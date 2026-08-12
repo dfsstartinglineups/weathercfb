@@ -78,7 +78,6 @@ def geocode_venue_multi_stage(stadium_name, city, home_team):
         if not q or not str(q).strip(): 
             continue
         try:
-            # Increased timeout to 10 seconds
             res = requests.get(base_url, params={"name": q.strip(), "count": 1}, timeout=10)
             if res.status_code == 200:
                 results = res.json().get('results')
@@ -88,7 +87,6 @@ def geocode_venue_multi_stage(stadium_name, city, home_team):
         except Exception as e:
             print(f"⚠️ Geocoding failed for {q}: {e}")
             
-        # Pause for 1 second before trying the next fallback query
         time.sleep(1)
             
     return 0.0, 0.0
@@ -163,6 +161,7 @@ def fetch_game_weather(lat, lon, game_iso_time):
     weather = fetch_weather_api_hourly(lat, lon, game_iso_time, days_diff)
     if weather: return weather
     return {"status": "error", "temp": "--", "windSpeed": 0, "precip": 0, "humidity": "--", "hourly": []}
+
 # ==========================================
 # 5. SCHEDULE & FIREBASE MERGE
 # ==========================================
@@ -234,7 +233,6 @@ def get_current_cfb_schedule(venues_dict, teams_dict):
             venue_id = str(espn_venue.get('id', ''))
             stadium_info = venues_dict.get(venue_id)
             
-            # Re-try geocoding if it hasn't been discovered OR if latitude is 0.0
             if (not stadium_info or stadium_info.get('lat', 0.0) == 0.0) and venue_id:
                 s_name = espn_venue.get('fullName', 'TBD Location')
                 s_city = espn_venue.get('address', {}).get('city', '')
@@ -406,6 +404,7 @@ def render_game_card(game, is_single_team=False):
         </div>
     </div>
     """
+
 def render_bye_card(team_name):
     return f"""
     <div class="w-100 mb-3">
@@ -426,7 +425,33 @@ MAIN_SITE_TEMPLATE = """<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{week_label} CFB Weather & Stadium Conditions</title>
+    <title>{week_label} College Football Weather & Stadium Conditions</title>
+    
+    <meta name="description" content="Live College Football weather forecasts, wind speeds, and stadium conditions for {week_label}. Optimize your College Football DFS and betting lineups.">
+    <meta name="keywords" content="College Football weather, college football weather, DFS weather, FBS weather, NCAA football weather, live wind speed College Football">
+    <link rel="canonical" href="https://weathercfb.com/">
+    
+    <meta property="og:title" content="Live College Football Weather & Stadium Conditions - Weather CFB">
+    <meta property="og:description" content="Check live wind speeds, rain forecasts, and stadium conditions before locking your college football bets.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://weathercfb.com/">
+    <meta property="og:image" content="https://weathercfb.com/social-share.png">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Live College Football Weather & Stadium Conditions - Weather CFB">
+    <meta name="twitter:description" content="Check live wind speeds, rain forecasts, and stadium conditions before locking your college football bets.">
+    <meta name="twitter:image" content="https://weathercfb.com/social-share.png">
+    
+    <script type="application/ld+json">
+    {{
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Weather CFB",
+      "url": "https://weathercfb.com/",
+      "description": "Live College Football weather, wind, and stadium conditions for sports bettors and fantasy players."
+    }}
+    </script>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <style>
@@ -526,17 +551,6 @@ MAIN_SITE_TEMPLATE = """<!DOCTYPE html>
         full.style.display = full.style.display === 'none' ? 'block' : 'none';
     }}
 
-    function toggleAllWeatherCards() {{
-        globalScoreboardMode = !globalScoreboardMode;
-        $('#expand-toggle-text').text(globalScoreboardMode ? 'Expand All Cards' : 'Collapse All Cards');
-        $('#expand-toggle-icon').text(globalScoreboardMode ? '▼' : '▲');
-        
-        document.querySelectorAll('.game-card').forEach(card => {{
-            card.querySelector('.ribbon-view').style.display = globalScoreboardMode ? 'block' : 'none';
-            card.querySelector('.full-card-view').style.display = globalScoreboardMode ? 'none' : 'block';
-        }});
-    }}
-
     function showRadar(url, venueName) {{
         const modalElement = document.getElementById('radarModal');
         const modalTitle = document.querySelector('#radarModal .modal-title');
@@ -564,6 +578,26 @@ TEAM_PAGE_TEMPLATE = """<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{page_title}</title>
+    
+    <meta name="description" content="{meta_desc}">
+    <meta name="keywords" content="{team_name} weather, College Football weather, college football weather, {stadium_name} wind direction, {team_name} game weather today">
+    <link rel="canonical" href="https://weathercfb.com/team_pages/{team_slug}/">
+    
+    <meta property="og:title" content="{og_title}">
+    <meta property="og:description" content="{og_desc}">
+    <meta property="og:url" content="https://weathercfb.com/team_pages/{team_slug}/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://weathercfb.com/social-share.png">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{og_title}">
+    <meta name="twitter:description" content="{og_desc}">
+    <meta name="twitter:image" content="https://weathercfb.com/social-share.png">
+    
+    <script type="application/ld+json">
+{schema_json}
+    </script>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <style>
@@ -600,7 +634,7 @@ TEAM_PAGE_TEMPLATE = """<!DOCTYPE html>
     
     <div class="main-container">
         <div class="text-center mt-3 mb-3">
-            <h1 class="h4 fw-bold text-dark mb-1">{team_name} Weather Forecast</h1>
+            <h1 class="h4 fw-bold text-dark mb-1">{team_h1}</h1>
         </div>
         <div id="team-weather-container">
             {team_card_content}
@@ -719,10 +753,10 @@ def generate_sitemap(changed_urls):
 # ==========================================
 def main():
     now_utc = datetime.datetime.now(timezone.utc)
-    print(f"🎬 Starting CFB (FBS) Static Site Generator ({now_utc.strftime('%Y-%m-%dT%H:%M:%SZ')})...")
+    print(f"🎬 Starting College Football (FBS) Static Site Generator ({now_utc.strftime('%Y-%m-%dT%H:%M:%SZ')})...")
 
     # Load from Realtime Database (/cfb node)
-    print("🔥 Loading CFB Teams and Venues from Realtime Database...")
+    print("🔥 Loading College Football Teams and Venues from Realtime Database...")
     teams_dict = db.reference('cfb/teams').get() or {}
     venues_dict = db.reference('cfb/venues').get() or {}
 
@@ -770,17 +804,64 @@ def main():
 
         if target_game:
             card_markup = render_game_card(target_game, is_single_team=True)
-            page_title = f"{team_name} Weather Forecast | Live Game Radar"
+            is_home = target_game['home_id'] == team_id
+            
+            # Clean up team names for meta titles
+            opp_name_full = target_game['away_team'] if is_home else target_game['home_team']
+            opp_name = re.sub(r'#\d+\s', '', opp_name_full) # Strip rankings for meta tags
+            t_name_clean = re.sub(r'#\d+\s', '', team_name)
+            
+            stadium_name = target_game.get('stadium', {}).get('name', 'TBD Stadium')
+            stadium_city = target_game.get('stadium', {}).get('city', '')
+            stadium_state = target_game.get('stadium', {}).get('state', '')
+
+            # Enforce that the subject team is ALWAYS listed first
+            matchup_str = f"{t_name_clean} vs {opp_name}" if is_home else f"{t_name_clean} @ {opp_name}"
+            
+            page_title = f"{matchup_str} Weather Forecast at {stadium_name} | Rain & Wind"
+            meta_desc = f"View the live weather forecast for {matchup_str} at {stadium_name}. Track real-time rain delay risks, stadium wind direction, and hourly temperatures."
+            og_title = f"{matchup_str} Game Weather at {stadium_name} - College Football Weather"
+            og_desc = f"Track stadium wind, hourly rain risks, and weather impact analytics for {matchup_str} at {stadium_name}."
+            team_h1 = f"{matchup_str} Weather Forecast at {stadium_name}"
+            schema_name = f"{matchup_str} Game"
+            schema_address = f"{stadium_city}, {stadium_state}"
         else:
             card_markup = render_bye_card(team_name)
-            page_title = f"{team_name} Game Weather | CFB Weather"
+            stadium_name = "Home Stadium"
+            t_name_clean = re.sub(r'#\d+\s', '', team_name)
+            
+            page_title = f"{t_name_clean} Weather Forecast | College Football Weather"
+            meta_desc = f"View the live weather forecast for {t_name_clean}. Track real-time rain delay risks, stadium wind direction, and hourly temperatures."
+            og_title = f"{t_name_clean} Game Weather - College Football Weather"
+            og_desc = f"Track stadium wind, hourly rain risks, and weather impact analytics for {t_name_clean}."
+            team_h1 = f"{t_name_clean} Weather Forecast"
+            schema_name = f"{t_name_clean} Football"
+            schema_address = ""
+
+        schema_dict = {
+            "@context": "https://schema.org",
+            "@type": "SportsEvent",
+            "name": schema_name,
+            "location": {
+                "@type": "Place",
+                "name": stadium_name,
+                "address": schema_address
+            }
+        }
+        schema_json = json.dumps(schema_dict, indent=4)
 
         team_html = TEAM_PAGE_TEMPLATE.format(
             page_title=page_title,
+            meta_desc=meta_desc,
+            og_title=og_title,
+            og_desc=og_desc,
+            schema_json=schema_json,
             team_name=team_name,
             team_slug=team_slug,
+            stadium_name=stadium_name,
             select_options=select_options,
-            team_card_content=card_markup
+            team_card_content=card_markup,
+            team_h1=team_h1
         )
 
         team_dir = os.path.join(TEAM_PAGES_DIR, team_slug)
@@ -792,7 +873,7 @@ def main():
 
     print(f"🚀 HTML parsing complete. {len(changed_urls)} pages required updates.")
     generate_sitemap(changed_urls)
-    print("🎉 CFB generation pipeline complete!")
+    print("🎉 College Football generation pipeline complete!")
 
 if __name__ == "__main__":
     main()
