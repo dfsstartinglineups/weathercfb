@@ -145,6 +145,7 @@ def fetch_weather_api_hourly(lat, lon, game_iso_time, days_diff):
             "temp": round(kickoff_hour.get('temp_f', 72)),
             "windSpeed": round(kickoff_hour.get('wind_mph', 0)),
             "precip": round(float(kickoff_hour.get('precip_in', 0.0)), 2),
+            "humidity": round(kickoff_hour.get('humidity', 50)),
             "hourly": hourly_slice
         }
     except Exception as e:
@@ -157,12 +158,11 @@ def fetch_game_weather(lat, lon, game_iso_time):
     days_diff = (utc_time.date() - today_utc).days
 
     if days_diff > 14 or days_diff < -1:
-        return {"status": "too_early", "temp": "--", "windSpeed": 0, "precip": 0, "hourly": []}
+        return {"status": "too_early", "temp": "--", "windSpeed": 0, "precip": 0, "humidity": "--", "hourly": []}
 
     weather = fetch_weather_api_hourly(lat, lon, game_iso_time, days_diff)
     if weather: return weather
-    return {"status": "error", "temp": "--", "windSpeed": 0, "precip": 0, "hourly": []}
-
+    return {"status": "error", "temp": "--", "windSpeed": 0, "precip": 0, "humidity": "--", "hourly": []}
 # ==========================================
 # 5. SCHEDULE & FIREBASE MERGE
 # ==========================================
@@ -260,10 +260,10 @@ def get_current_cfb_schedule(venues_dict, teams_dict):
             # --- WEATHER FETCH ---
             is_dome = stadium_info.get('roof') in ["Dome", "Retractable"] if stadium_info else False
             if not is_dome and stadium_info and stadium_info.get('lat', 0.0) != 0.0:
-                weather_payload = fetch_game_weather(stadium_info['lat'], stadium_info['lon'], game_time) or {"status": "ok", "temp": 72, "windSpeed": 0, "precip": 0, "hourly": []}
+                weather_payload = fetch_game_weather(stadium_info['lat'], stadium_info['lon'], game_time) or {"status": "ok", "temp": 72, "windSpeed": 0, "precip": 0, "humidity": 50, "hourly": []}
             else:
-                weather_payload = {"status": "ok", "temp": 70, "windSpeed": 0, "precip": 0, "hourly": []}
-
+                weather_payload = {"status": "ok", "temp": 70, "windSpeed": 0, "precip": 0, "humidity": 50, "hourly": []}
+                
             # --- RANKING FORMATTER ---
             home_rank = home_comp.get('curatedRank', {}).get('current', 99) if home_comp else 99
             away_rank = away_comp.get('curatedRank', {}).get('current', 99) if away_comp else 99
@@ -299,7 +299,7 @@ def get_current_cfb_schedule(venues_dict, teams_dict):
 def render_game_card(game, is_single_team=False):
     stadium = game.get('stadium', {}) or {}
     is_dome = stadium.get('roof') in ["Dome", "Retractable"]
-    w = game.get('weather') or {"status": "too_early", "temp": "--", "windSpeed": 0, "precip": 0}
+    w = game.get('weather') or {"status": "too_early", "temp": "--", "windSpeed": 0, "precip": 0, "humidity": "--"}
     is_too_early = w.get('status') == "too_early" or w.get('temp') == "--"
     
     hourly_list = w.get('hourly', [])
@@ -312,6 +312,7 @@ def render_game_card(game, is_single_team=False):
     precip_val = w.get('precip', 0)
     wind_val = w.get('windSpeed', 0)
     temp_val = w.get('temp', 70)
+    humidity_val = w.get('humidity', 50)
 
     if is_too_early: bg_class = "bg-light"
     elif is_dome: bg_class = "bg-weather-roof"
@@ -341,16 +342,18 @@ def render_game_card(game, is_single_team=False):
     home_logo = f"https://a.espncdn.com/i/teamlogos/ncaa/500/{game.get('home_id', '')}.png"
 
     display_rain = "0%" if is_dome else f"{max_pop}%"
-    weather_emoji_line = f"Roof Closed 🌡️{temp_val}°" if is_dome else f"🌧️{display_rain} 🌡️{temp_val}° 💨{wind_val}mph"
+    display_humid = f"{humidity_val}%" if humidity_val != "--" else "--"
+    weather_emoji_line = f"Roof Closed 🌡️{temp_val}°" if is_dome else f"🌧️{display_rain} 🌡️{temp_val}° 💨{wind_val}mph 💧{display_humid}"
     
     stadium_name = stadium.get('name', 'TBD Location')
     radar_url = f"https://embed.windy.com/embed2.html?lat={stadium.get('lat',0)}&lon={stadium.get('lon',0)}&zoom=11&level=surface&overlay=rain&product=ecmwf"
 
     weather_section = f"""
         <div class="weather-row row text-center align-items-center mt-2 mx-0">
-            <div class="col-4 border-end px-1"><div class="fw-bold">{temp_val}°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
-            <div class="col-4 border-end px-1"><div class="fw-bold text-primary">{display_rain}</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
-            <div class="col-4 px-1"><div class="fw-bold">{wind_val} <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold">{temp_val}°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">{display_rain}</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-info">{display_humid}</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
+            <div class="col-3 px-1"><div class="fw-bold">{wind_val} <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
         </div>
         <div class="mt-2 mb-2">
             <button class="btn btn-sm btn-outline-primary w-100 py-1 fw-bold" onclick="showRadar('{radar_url}', '{stadium_name}')">🗺️ View Live Radar Map</button>
@@ -403,7 +406,6 @@ def render_game_card(game, is_single_team=False):
         </div>
     </div>
     """
-
 def render_bye_card(team_name):
     return f"""
     <div class="w-100 mb-3">
