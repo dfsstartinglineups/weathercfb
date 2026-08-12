@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import re
+import time
 import requests
 import datetime
 from datetime import timezone, timedelta
@@ -64,7 +65,7 @@ def write_if_changed(filepath, new_content):
 # 3. FIREBASE DISCOVERY & GEOCODING
 # ==========================================
 def geocode_venue_multi_stage(stadium_name, city, home_team):
-    """Fallback cascading geocoder using Open-Meteo"""
+    """Fallback cascading geocoder using Open-Meteo with rate limiting"""
     base_url = "https://geocoding-api.open-meteo.com/v1/search"
     queries = [
         f"{stadium_name} {city}",
@@ -77,13 +78,18 @@ def geocode_venue_multi_stage(stadium_name, city, home_team):
         if not q or not str(q).strip(): 
             continue
         try:
-            res = requests.get(base_url, params={"name": q.strip(), "count": 1}, timeout=5)
+            # Increased timeout to 10 seconds
+            res = requests.get(base_url, params={"name": q.strip(), "count": 1}, timeout=10)
             if res.status_code == 200:
                 results = res.json().get('results')
                 if results:
+                    time.sleep(1) # Prevent hammering the API on success
                     return results[0]['latitude'], results[0]['longitude']
         except Exception as e:
             print(f"⚠️ Geocoding failed for {q}: {e}")
+            
+        # Pause for 1 second before trying the next fallback query
+        time.sleep(1)
             
     return 0.0, 0.0
 
@@ -228,7 +234,8 @@ def get_current_cfb_schedule(venues_dict, teams_dict):
             venue_id = str(espn_venue.get('id', ''))
             stadium_info = venues_dict.get(venue_id)
             
-            if not stadium_info and venue_id:
+            # Re-try geocoding if it hasn't been discovered OR if latitude is 0.0
+            if (not stadium_info or stadium_info.get('lat', 0.0) == 0.0) and venue_id:
                 s_name = espn_venue.get('fullName', 'TBD Location')
                 s_city = espn_venue.get('address', {}).get('city', '')
                 s_state = espn_venue.get('address', {}).get('state', '')
@@ -248,7 +255,7 @@ def get_current_cfb_schedule(venues_dict, teams_dict):
                 }
                 db.reference(f'cfb/venues/{venue_id}').set(stadium_info)
                 venues_dict[venue_id] = stadium_info
-                print(f"🏟️ Discovered and geocoded new venue: {s_name} ({lat}, {lon})")
+                print(f"🏟️ Discovered and geocoded venue: {s_name} ({lat}, {lon})")
 
             # --- WEATHER FETCH ---
             is_dome = stadium_info.get('roof') in ["Dome", "Retractable"] if stadium_info else False
