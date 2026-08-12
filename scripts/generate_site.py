@@ -7,10 +7,10 @@ import datetime
 from datetime import timezone, timedelta
 import zoneinfo
 import firebase_admin
-from firebase_admin import credentials, firestore
+from firebase_admin import credentials, db
 
 # ==========================================
-# 1. PATH CONFIGURATION & INIT
+# 1. PATH CONFIGURATION & FIREBASE INIT
 # ==========================================
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(SCRIPT_DIR) if os.path.basename(SCRIPT_DIR) == 'scripts' else SCRIPT_DIR
@@ -18,15 +18,28 @@ ROOT_DIR = os.path.dirname(SCRIPT_DIR) if os.path.basename(SCRIPT_DIR) == 'scrip
 TEAM_PAGES_DIR = os.path.join(ROOT_DIR, 'team_pages')
 MAIN_INDEX_FILE = os.path.join(ROOT_DIR, 'index.html')
 SITEMAP_FILE = os.path.join(ROOT_DIR, 'sitemap.xml')
+
 WEATHER_API_KEY = os.environ.get("WEATHER_API_KEY", "")
+FIREBASE_SERVICE_ACCOUNT = os.environ.get("FIREBASE_SERVICE_ACCOUNT", "")
+FIREBASE_DATABASE_URL = os.environ.get("FIREBASE_DATABASE_URL", "https://nbastartingfive-8b420-default-rtdb.firebaseio.com")
 
 os.makedirs(TEAM_PAGES_DIR, exist_ok=True)
 EST_TZ = zoneinfo.ZoneInfo("America/New_York")
 
-# Initialize Firebase Admin SDK (Assumes GOOGLE_APPLICATION_CREDENTIALS is set in env)
+# Initialize Firebase Admin SDK for Realtime Database
 if not firebase_admin._apps:
-    firebase_admin.initialize_app()
-db = firestore.client()
+    if FIREBASE_SERVICE_ACCOUNT:
+        try:
+            cred_dict = json.loads(FIREBASE_SERVICE_ACCOUNT)
+            cred = credentials.Certificate(cred_dict)
+            firebase_admin.initialize_app(cred, {
+                'databaseURL': FIREBASE_DATABASE_URL
+            })
+        except Exception as e:
+            print(f"⚠️ Firebase credential parse error: {e}")
+            firebase_admin.initialize_app(options={'databaseURL': FIREBASE_DATABASE_URL})
+    else:
+        firebase_admin.initialize_app(options={'databaseURL': FIREBASE_DATABASE_URL})
 
 # ==========================================
 # 2. UTILITY & HELPERS
@@ -35,11 +48,6 @@ def slugify(text):
     text = str(text).lower().strip()
     text = re.sub(r'[^\w\s-]', '', text)
     return re.sub(r'[\s_-]+', '-', text)
-
-def get_short_team_name(full_name):
-    if not full_name or full_name == "TBD": return "TBD"
-    parts = full_name.split()
-    return parts[-1]
 
 def write_if_changed(filepath, new_content):
     if os.path.exists(filepath):
@@ -56,7 +64,7 @@ def write_if_changed(filepath, new_content):
 # 3. FIREBASE DISCOVERY & GEOCODING
 # ==========================================
 def geocode_venue_multi_stage(stadium_name, city, home_team):
-    """Fallback cascading geocoder mimicking the WeatherFootball architecture"""
+    """Fallback cascading geocoder using Open-Meteo"""
     base_url = "https://geocoding-api.open-meteo.com/v1/search"
     queries = [
         f"{stadium_name} {city}",
@@ -94,9 +102,6 @@ def fetch_weather_api_hourly(lat, lon, game_iso_time, days_diff):
         if res.status_code != 200: return None
         
         data = res.json()
-        current_data = data.get('current', {})
-        current_epoch = int(datetime.datetime.now(timezone.utc).timestamp())
-        
         all_hours = []
         for day in data.get('forecast', {}).get('forecastday', []):
             all_hours.extend(day.get('hour', []))
@@ -214,7 +219,7 @@ def get_current_cfb_schedule(venues_dict, teams_dict):
                         "slug": slugify(t_name),
                         "abbr": c['team'].get('abbreviation', 'TBD')
                     }
-                    db.collection('cfb_teams').document(tid).set(new_team, merge=True)
+                    db.reference(f'cfb/teams/{tid}').set(new_team)
                     teams_dict[tid] = new_team
                     print(f"🆕 Discovered and saved new FBS team: {t_name}")
 
@@ -241,7 +246,7 @@ def get_current_cfb_schedule(venues_dict, teams_dict):
                     "lat": lat,
                     "lon": lon
                 }
-                db.collection('cfb_venues').document(venue_id).set(stadium_info, merge=True)
+                db.reference(f'cfb/venues/{venue_id}').set(stadium_info)
                 venues_dict[venue_id] = stadium_info
                 print(f"🏟️ Discovered and geocoded new venue: {s_name} ({lat}, {lon})")
 
@@ -285,7 +290,7 @@ def get_current_cfb_schedule(venues_dict, teams_dict):
 # 6. HTML GENERATORS
 # ==========================================
 def render_game_card(game, is_single_team=False):
-    stadium = game.get('stadium', {})
+    stadium = game.get('stadium', {}) or {}
     is_dome = stadium.get('roof') in ["Dome", "Retractable"]
     w = game.get('weather') or {"status": "too_early", "temp": "--", "windSpeed": 0, "precip": 0}
     is_too_early = w.get('status') == "too_early" or w.get('temp') == "--"
@@ -633,28 +638,74 @@ TEAM_PAGE_TEMPLATE = """<!DOCTYPE html>
 """
 
 # ==========================================
-# 8. MAIN CONTROLLER PIPELINE
+# 8. SITEMAP & INDEXNOW GENERATOR
+# ==========================================
+def generate_sitemap(changed_urls):
+    urls_with_paths = [("https://weathercfb.com/", MAIN_INDEX_FILE)]
+    
+    # Add team pages dynamically
+    for root, dirs, files in os.walk(TEAM_PAGES_DIR):
+        if "index.html" in files:
+            team_slug = os.path.basename(root)
+            urls_with_paths.append((
+                f"https://weathercfb.com/team_pages/{team_slug}/",
+                os.path.join(root, "index.html")
+            ))
+
+    sitemap_entries = []
+    for i, (url, filepath) in enumerate(urls_with_paths):
+        priority = "1.0" if i == 0 else "0.8"
+        
+        if os.path.exists(filepath):
+            mtime = os.path.getmtime(filepath)
+            dt = datetime.datetime.fromtimestamp(mtime, timezone.utc)
+            lastmod = dt.strftime('%Y-%m-%dT%H:%M:%SZ')
+        else:
+            lastmod = datetime.datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+
+        sitemap_entries.append(
+            f"  <url>\n"
+            f"    <loc>{url}</loc>\n"
+            f"    <lastmod>{lastmod}</lastmod>\n"
+            f"    <changefreq>hourly</changefreq>\n"
+            f"    <priority>{priority}</priority>\n"
+            f"  </url>"
+        )
+
+    sitemap_xml = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        + "\n".join(sitemap_entries) +
+        '\n</urlset>'
+    )
+
+    with open(SITEMAP_FILE, 'w', encoding='utf-8') as f:
+        f.write(sitemap_xml)
+    print("✅ Generated sitemap.xml using actual file modification dates!")
+
+# ==========================================
+# 9. MAIN CONTROLLER PIPELINE
 # ==========================================
 def main():
     now_utc = datetime.datetime.now(timezone.utc)
     print(f"🎬 Starting CFB (FBS) Static Site Generator ({now_utc.strftime('%Y-%m-%dT%H:%M:%SZ')})...")
 
-    # Load from Firestore
-    print("🔥 Loading Teams and Venues from Firestore...")
-    teams_dict = {doc.id: doc.to_dict() for doc in db.collection('cfb_teams').stream()}
-    venues_dict = {doc.id: doc.to_dict() for doc in db.collection('cfb_venues').stream()}
+    # Load from Realtime Database (/cfb node)
+    print("🔥 Loading CFB Teams and Venues from Realtime Database...")
+    teams_dict = db.reference('cfb/teams').get() or {}
+    venues_dict = db.reference('cfb/venues').get() or {}
 
     # Fetch Schedule & Geocode New Entrants
     week_label, games = get_current_cfb_schedule(venues_dict, teams_dict)
     print(f"🏈 Processed {len(games)} games for {week_label}.")
 
-    # Build Dropdown Select2 Options from Firestore Master List
+    # Build Dropdown Select2 Options from Realtime DB Master List
     sorted_teams = sorted(teams_dict.values(), key=lambda x: x["name"])
     select_options = "\n".join([f'<option value="/team_pages/{t["slug"]}/">{t["name"]}</option>' for t in sorted_teams])
 
     changed_urls = []
 
-    # Format Main Page Games Grouped By Date
+    # Format Main Page Games Grouped By Date (e.g. Saturday, August 29, 2026)
     if games:
         games_by_date = {}
         for g in games:
@@ -675,7 +726,7 @@ def main():
     if write_if_changed(MAIN_INDEX_FILE, main_html):
         changed_urls.append("https://weathercfb.com/")
 
-    # Generate All Team Pages stored in Firestore
+    # Generate All Team Pages stored in Realtime DB
     for team_id, team in teams_dict.items():
         team_name = team["name"]
         team_slug = team["slug"]
@@ -709,6 +760,7 @@ def main():
             changed_urls.append(f"https://weathercfb.com/team_pages/{team_slug}/")
 
     print(f"🚀 HTML parsing complete. {len(changed_urls)} pages required updates.")
+    generate_sitemap(changed_urls)
     print("🎉 CFB generation pipeline complete!")
 
 if __name__ == "__main__":
