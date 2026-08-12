@@ -1,9 +1,9 @@
 name: CFB Weather Site Generator
 
 on:
-  workflow_dispatch:
-  repository_dispatch:
-    types: [cron_trigger]
+  workflow_dispatch: # Enables manual triggering from the GitHub Actions UI
+  repository_dispatch: 
+    types: [update-cfb-weather] # Enables external webhook triggering from cron-job.org
 
 # Grant write access to push commits back to the repository
 permissions:
@@ -12,34 +12,35 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-
+        with:
+          fetch-depth: 1
+          
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-
+          python-version: '3.10'
+          
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests firebase-admin google-cloud-firestore
-
-      - name: Generate Firebase Credentials
-        run: |
-          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > firebase_credentials.json
-
+          pip install requests firebase-admin
+          
       - name: Run CFB Site Generator
         env:
           WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
-          GOOGLE_APPLICATION_CREDENTIALS: firebase_credentials.json
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          FIREBASE_DATABASE_URL: "https://nbastartingfive-8b420-default-rtdb.firebaseio.com"
         run: python scripts/generate_site.py
-
+        
       - name: Commit and Push Changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add index.html sitemap.xml team_pages/
-          git commit -m "🤖 Auto-update CFB schedule and weather [skip ci]" || echo "No changes to commit"
+          git add index.html team_pages/ sitemap.xml
+          # [skip ci] prevents this automated commit from accidentally triggering other workflows
+          git commit -m "Automated CFB site build [skip ci]" || echo "No changes to commit"
           git push
