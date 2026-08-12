@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USC Trojans Weather Forecast | Live Game Radar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <style>
+        body { background-color: #f8f9fa; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; } 
+        .main-container { max-width: 520px; margin: 30px auto; padding: 0 15px; }
+        .game-card { border: 1px solid #dee2e6; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); background: white; overflow: hidden; }
+        
+        .select2-container .select2-selection--single { height: 38px; border: 1px solid #334155; background-color: #1e293b; color: #fff; }
+        .select2-container--default .select2-selection--single .select2-selection__rendered { color: #adb5bd; line-height: 38px; font-weight: bold; }
+        .select2-container--default .select2-selection--single .select2-selection__arrow { height: 36px; }
+        
+        @keyframes weather-flow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .bg-weather-sunny { background: linear-gradient(-45deg, #e3f2fd, #e1f5fe, #f1f8e9); background-size: 300% 300%; animation: weather-flow 15s ease infinite; }
+        .bg-weather-cloudy { background: linear-gradient(-45deg, #f5f5f5, #e0e0e0, #eeeeee); background-size: 300% 300%; animation: weather-flow 20s ease infinite; }
+        .bg-weather-rain { background: linear-gradient(180deg, #e3f2fd, #cfd8dc, #eceff1); background-size: 200% 200%; animation: weather-flow 8s ease infinite; }
+        .bg-weather-storm { background: linear-gradient(-45deg, #e1bee7, #cfd8dc, #e0e0e0); background-size: 300% 300%; animation: weather-flow 10s ease infinite; }
+        .bg-weather-roof { background-color: #ffffff; }
+    </style>
+</head>
+<body>
+    <nav class="navbar shadow-sm py-2 mb-0 sticky-top" style="background-color: #0f172a;">
+        <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <a href="/" class="navbar-brand text-white fw-bold m-0" style="font-style: italic; font-size: 1.6rem;">
+                Weather <span style="color: #5ac8fa;">CFB</span>
+            </a>
+            <div class="d-flex align-items-center gap-2" style="min-width: 250px;">
+                <select id="team-nav-select" class="form-select form-select-sm fw-bold">
+                    <option></option>
+                    <option value="/team_pages/abilene-christian-wildcats/">Abilene Christian Wildcats</option>
+<option value="/team_pages/air-force-falcons/">Air Force Falcons</option>
+<option value="/team_pages/akron-zips/">Akron Zips</option>
+<option value="/team_pages/alabama-crimson-tide/">Alabama Crimson Tide</option>
+<option value="/team_pages/alcorn-state-braves/">Alcorn State Braves</option>
+<option value="/team_pages/app-state-mountaineers/">App State Mountaineers</option>
+<option value="/team_pages/arizona-state-sun-devils/">Arizona State Sun Devils</option>
+<option value="/team_pages/arizona-wildcats/">Arizona Wildcats</option>
+<option value="/team_pages/arkansas-razorbacks/">Arkansas Razorbacks</option>
+<option value="/team_pages/arkansas-state-red-wolves/">Arkansas State Red Wolves</option>
+<option value="/team_pages/arkansas-pine-bluff-golden-lions/">Arkansas-Pine Bluff Golden Lions</option>
+<option value="/team_pages/army-black-knights/">Army Black Knights</option>
+<option value="/team_pages/auburn-tigers/">Auburn Tigers</option>
+<option value="/team_pages/austin-peay-governors/">Austin Peay Governors</option>
+<option value="/team_pages/byu-cougars/">BYU Cougars</option>
+<option value="/team_pages/ball-state-cardinals/">Ball State Cardinals</option>
+<option value="/team_pages/baylor-bears/">Baylor Bears</option>
+<option value="/team_pages/bethune-cookman-wildcats/">Bethune-Cookman Wildcats</option>
+<option value="/team_pages/boise-state-broncos/">Boise State Broncos</option>
+<option value="/team_pages/boston-college-eagles/">Boston College Eagles</option>
+<option value="/team_pages/bowling-green-falcons/">Bowling Green Falcons</option>
+<option value="/team_pages/bryant-bulldogs/">Bryant Bulldogs</option>
+<option value="/team_pages/buffalo-bulls/">Buffalo Bulls</option>
+<option value="/team_pages/california-golden-bears/">California Golden Bears</option>
+<option value="/team_pages/central-michigan-chippewas/">Central Michigan Chippewas</option>
+<option value="/team_pages/charleston-southern-buccaneers/">Charleston Southern Buccaneers</option>
+<option value="/team_pages/charlotte-49ers/">Charlotte 49ers</option>
+<option value="/team_pages/cincinnati-bearcats/">Cincinnati Bearcats</option>
+<option value="/team_pages/clemson-tigers/">Clemson Tigers</option>
+<option value="/team_pages/coastal-carolina-chanticleers/">Coastal Carolina Chanticleers</option>
+<option value="/team_pages/colorado-buffaloes/">Colorado Buffaloes</option>
+<option value="/team_pages/colorado-state-rams/">Colorado State Rams</option>
+<option value="/team_pages/delaware-blue-hens/">Delaware Blue Hens</option>
+<option value="/team_pages/duke-blue-devils/">Duke Blue Devils</option>
+<option value="/team_pages/duquesne-dukes/">Duquesne Dukes</option>
+<option value="/team_pages/east-carolina-pirates/">East Carolina Pirates</option>
+<option value="/team_pages/eastern-illinois-panthers/">Eastern Illinois Panthers</option>
+<option value="/team_pages/eastern-kentucky-colonels/">Eastern Kentucky Colonels</option>
+<option value="/team_pages/eastern-michigan-eagles/">Eastern Michigan Eagles</option>
+<option value="/team_pages/florida-atlantic-owls/">Florida Atlantic Owls</option>
+<option value="/team_pages/florida-gators/">Florida Gators</option>
+<option value="/team_pages/florida-international-panthers/">Florida International Panthers</option>
+<option value="/team_pages/florida-state-seminoles/">Florida State Seminoles</option>
+<option value="/team_pages/fordham-rams/">Fordham Rams</option>
+<option value="/team_pages/fresno-state-bulldogs/">Fresno State Bulldogs</option>
+<option value="/team_pages/furman-paladins/">Furman Paladins</option>
+<option value="/team_pages/georgia-bulldogs/">Georgia Bulldogs</option>
+<option value="/team_pages/georgia-southern-eagles/">Georgia Southern Eagles</option>
+<option value="/team_pages/georgia-state-panthers/">Georgia State Panthers</option>
+<option value="/team_pages/georgia-tech-yellow-jackets/">Georgia Tech Yellow Jackets</option>
+<option value="/team_pages/hampton-pirates/">Hampton Pirates</option>
+<option value="/team_pages/hawaii-rainbow-warriors/">Hawai'i Rainbow Warriors</option>
+<option value="/team_pages/houston-christian-huskies/">Houston Christian Huskies</option>
+<option value="/team_pages/houston-cougars/">Houston Cougars</option>
+<option value="/team_pages/idaho-state-bengals/">Idaho State Bengals</option>
+<option value="/team_pages/idaho-vandals/">Idaho Vandals</option>
+<option value="/team_pages/illinois-fighting-illini/">Illinois Fighting Illini</option>
+<option value="/team_pages/indiana-hoosiers/">Indiana Hoosiers</option>
+<option value="/team_pages/indiana-state-sycamores/">Indiana State Sycamores</option>
+<option value="/team_pages/iowa-hawkeyes/">Iowa Hawkeyes</option>
+<option value="/team_pages/iowa-state-cyclones/">Iowa State Cyclones</option>
+<option value="/team_pages/jacksonville-state-gamecocks/">Jacksonville State Gamecocks</option>
+<option value="/team_pages/james-madison-dukes/">James Madison Dukes</option>
+<option value="/team_pages/kansas-jayhawks/">Kansas Jayhawks</option>
+<option value="/team_pages/kansas-state-wildcats/">Kansas State Wildcats</option>
+<option value="/team_pages/kennesaw-state-owls/">Kennesaw State Owls</option>
+<option value="/team_pages/kent-state-golden-flashes/">Kent State Golden Flashes</option>
+<option value="/team_pages/kentucky-wildcats/">Kentucky Wildcats</option>
+<option value="/team_pages/lsu-tigers/">LSU Tigers</option>
+<option value="/team_pages/lafayette-leopards/">Lafayette Leopards</option>
+<option value="/team_pages/lamar-cardinals/">Lamar Cardinals</option>
+<option value="/team_pages/liberty-flames/">Liberty Flames</option>
+<option value="/team_pages/long-island-university-sharks/">Long Island University Sharks</option>
+<option value="/team_pages/louisiana-ragin-cajuns/">Louisiana Ragin' Cajuns</option>
+<option value="/team_pages/louisiana-tech-bulldogs/">Louisiana Tech Bulldogs</option>
+<option value="/team_pages/louisville-cardinals/">Louisville Cardinals</option>
+<option value="/team_pages/maine-black-bears/">Maine Black Bears</option>
+<option value="/team_pages/marshall-thundering-herd/">Marshall Thundering Herd</option>
+<option value="/team_pages/maryland-terrapins/">Maryland Terrapins</option>
+<option value="/team_pages/massachusetts-minutemen/">Massachusetts Minutemen</option>
+<option value="/team_pages/memphis-tigers/">Memphis Tigers</option>
+<option value="/team_pages/mercyhurst-lakers/">Mercyhurst Lakers</option>
+<option value="/team_pages/merrimack-warriors/">Merrimack Warriors</option>
+<option value="/team_pages/miami-oh-redhawks/">Miami (OH) RedHawks</option>
+<option value="/team_pages/miami-hurricanes/">Miami Hurricanes</option>
+<option value="/team_pages/michigan-state-spartans/">Michigan State Spartans</option>
+<option value="/team_pages/michigan-wolverines/">Michigan Wolverines</option>
+<option value="/team_pages/middle-tennessee-blue-raiders/">Middle Tennessee Blue Raiders</option>
+<option value="/team_pages/minnesota-golden-gophers/">Minnesota Golden Gophers</option>
+<option value="/team_pages/mississippi-state-bulldogs/">Mississippi State Bulldogs</option>
+<option value="/team_pages/mississippi-valley-state-delta-devils/">Mississippi Valley State Delta Devils</option>
+<option value="/team_pages/missouri-state-bears/">Missouri State Bears</option>
+<option value="/team_pages/missouri-tigers/">Missouri Tigers</option>
+<option value="/team_pages/morgan-state-bears/">Morgan State Bears</option>
+<option value="/team_pages/murray-state-racers/">Murray State Racers</option>
+<option value="/team_pages/nc-state-wolfpack/">NC State Wolfpack</option>
+<option value="/team_pages/navy-midshipmen/">Navy Midshipmen</option>
+<option value="/team_pages/nebraska-cornhuskers/">Nebraska Cornhuskers</option>
+<option value="/team_pages/nevada-wolf-pack/">Nevada Wolf Pack</option>
+<option value="/team_pages/new-hampshire-wildcats/">New Hampshire Wildcats</option>
+<option value="/team_pages/new-mexico-lobos/">New Mexico Lobos</option>
+<option value="/team_pages/new-mexico-state-aggies/">New Mexico State Aggies</option>
+<option value="/team_pages/nicholls-colonels/">Nicholls Colonels</option>
+<option value="/team_pages/norfolk-state-spartans/">Norfolk State Spartans</option>
+<option value="/team_pages/north-alabama-lions/">North Alabama Lions</option>
+<option value="/team_pages/north-carolina-at-aggies/">North Carolina A&T Aggies</option>
+<option value="/team_pages/north-carolina-tar-heels/">North Carolina Tar Heels</option>
+<option value="/team_pages/north-dakota-state-bison/">North Dakota State Bison</option>
+<option value="/team_pages/north-texas-mean-green/">North Texas Mean Green</option>
+<option value="/team_pages/northern-arizona-lumberjacks/">Northern Arizona Lumberjacks</option>
+<option value="/team_pages/northern-illinois-huskies/">Northern Illinois Huskies</option>
+<option value="/team_pages/northwestern-state-demons/">Northwestern State Demons</option>
+<option value="/team_pages/northwestern-wildcats/">Northwestern Wildcats</option>
+<option value="/team_pages/notre-dame-fighting-irish/">Notre Dame Fighting Irish</option>
+<option value="/team_pages/ohio-bobcats/">Ohio Bobcats</option>
+<option value="/team_pages/ohio-state-buckeyes/">Ohio State Buckeyes</option>
+<option value="/team_pages/oklahoma-sooners/">Oklahoma Sooners</option>
+<option value="/team_pages/oklahoma-state-cowboys/">Oklahoma State Cowboys</option>
+<option value="/team_pages/old-dominion-monarchs/">Old Dominion Monarchs</option>
+<option value="/team_pages/ole-miss-rebels/">Ole Miss Rebels</option>
+<option value="/team_pages/oregon-ducks/">Oregon Ducks</option>
+<option value="/team_pages/oregon-state-beavers/">Oregon State Beavers</option>
+<option value="/team_pages/penn-state-nittany-lions/">Penn State Nittany Lions</option>
+<option value="/team_pages/pittsburgh-panthers/">Pittsburgh Panthers</option>
+<option value="/team_pages/portland-state-vikings/">Portland State Vikings</option>
+<option value="/team_pages/purdue-boilermakers/">Purdue Boilermakers</option>
+<option value="/team_pages/rhode-island-rams/">Rhode Island Rams</option>
+<option value="/team_pages/rice-owls/">Rice Owls</option>
+<option value="/team_pages/rutgers-scarlet-knights/">Rutgers Scarlet Knights</option>
+<option value="/team_pages/se-louisiana-lions/">SE Louisiana Lions</option>
+<option value="/team_pages/smu-mustangs/">SMU Mustangs</option>
+<option value="/team_pages/sacramento-state-hornets/">Sacramento State Hornets</option>
+<option value="/team_pages/sam-houston-bearkats/">Sam Houston Bearkats</option>
+<option value="/team_pages/san-diego-state-aztecs/">San Diego State Aztecs</option>
+<option value="/team_pages/san-josé-state-spartans/">San José State Spartans</option>
+<option value="/team_pages/south-alabama-jaguars/">South Alabama Jaguars</option>
+<option value="/team_pages/south-carolina-gamecocks/">South Carolina Gamecocks</option>
+<option value="/team_pages/south-dakota-state-jackrabbits/">South Dakota State Jackrabbits</option>
+<option value="/team_pages/south-florida-bulls/">South Florida Bulls</option>
+<option value="/team_pages/southeast-missouri-state-redhawks/">Southeast Missouri State Redhawks</option>
+<option value="/team_pages/southern-miss-golden-eagles/">Southern Miss Golden Eagles</option>
+<option value="/team_pages/stanford-cardinal/">Stanford Cardinal</option>
+<option value="/team_pages/syracuse-orange/">Syracuse Orange</option>
+<option value="/team_pages/tcu-horned-frogs/">TCU Horned Frogs</option>
+<option value="/team_pages/tarleton-state-texans/">Tarleton State Texans</option>
+<option value="/team_pages/temple-owls/">Temple Owls</option>
+<option value="/team_pages/tennessee-state-tigers/">Tennessee State Tigers</option>
+<option value="/team_pages/tennessee-volunteers/">Tennessee Volunteers</option>
+<option value="/team_pages/texas-am-aggies/">Texas A&M Aggies</option>
+<option value="/team_pages/texas-longhorns/">Texas Longhorns</option>
+<option value="/team_pages/texas-state-bobcats/">Texas State Bobcats</option>
+<option value="/team_pages/texas-tech-red-raiders/">Texas Tech Red Raiders</option>
+<option value="/team_pages/the-citadel-bulldogs/">The Citadel Bulldogs</option>
+<option value="/team_pages/toledo-rockets/">Toledo Rockets</option>
+<option value="/team_pages/towson-tigers/">Towson Tigers</option>
+<option value="/team_pages/troy-trojans/">Troy Trojans</option>
+<option value="/team_pages/tulane-green-wave/">Tulane Green Wave</option>
+<option value="/team_pages/tulsa-golden-hurricane/">Tulsa Golden Hurricane</option>
+<option value="/team_pages/uab-blazers/">UAB Blazers</option>
+<option value="/team_pages/ualbany-great-danes/">UAlbany Great Danes</option>
+<option value="/team_pages/ucf-knights/">UCF Knights</option>
+<option value="/team_pages/ucla-bruins/">UCLA Bruins</option>
+<option value="/team_pages/uconn-huskies/">UConn Huskies</option>
+<option value="/team_pages/ul-monroe-warhawks/">UL Monroe Warhawks</option>
+<option value="/team_pages/unlv-rebels/">UNLV Rebels</option>
+<option value="/team_pages/usc-trojans/">USC Trojans</option>
+<option value="/team_pages/ut-rio-grande-valley-vaqueros/">UT Rio Grande Valley Vaqueros</option>
+<option value="/team_pages/utep-miners/">UTEP Miners</option>
+<option value="/team_pages/utsa-roadrunners/">UTSA Roadrunners</option>
+<option value="/team_pages/utah-state-aggies/">Utah State Aggies</option>
+<option value="/team_pages/utah-tech-trailblazers/">Utah Tech Trailblazers</option>
+<option value="/team_pages/utah-utes/">Utah Utes</option>
+<option value="/team_pages/vmi-keydets/">VMI Keydets</option>
+<option value="/team_pages/vanderbilt-commodores/">Vanderbilt Commodores</option>
+<option value="/team_pages/virginia-cavaliers/">Virginia Cavaliers</option>
+<option value="/team_pages/virginia-tech-hokies/">Virginia Tech Hokies</option>
+<option value="/team_pages/wake-forest-demon-deacons/">Wake Forest Demon Deacons</option>
+<option value="/team_pages/washington-huskies/">Washington Huskies</option>
+<option value="/team_pages/washington-state-cougars/">Washington State Cougars</option>
+<option value="/team_pages/west-georgia-wolves/">West Georgia Wolves</option>
+<option value="/team_pages/west-virginia-mountaineers/">West Virginia Mountaineers</option>
+<option value="/team_pages/western-kentucky-hilltoppers/">Western Kentucky Hilltoppers</option>
+<option value="/team_pages/western-michigan-broncos/">Western Michigan Broncos</option>
+<option value="/team_pages/wisconsin-badgers/">Wisconsin Badgers</option>
+<option value="/team_pages/wyoming-cowboys/">Wyoming Cowboys</option>
+<option value="/team_pages/youngstown-state-penguins/">Youngstown State Penguins</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="main-container">
+        <div class="text-center mt-3 mb-3">
+            <h1 class="h4 fw-bold text-dark mb-1">USC Trojans Weather Forecast</h1>
+        </div>
+        <div id="team-weather-container">
+            
+    <div class="w-100 mb-3" id="game-401864494">
+        <div class="card game-card shadow-sm  bg-light" style="overflow: hidden;">
+            
+            <div class="ribbon-view p-2 position-relative" onclick="toggleSingleCard(event, '401864494')" style="cursor: pointer; display: none;">
+                <div class="d-flex align-items-center mb-1">
+                    <span class="badge bg-light text-dark border flex-shrink-0 px-2 py-1" style="font-size: 0.65rem;">Sat 3:00 PM</span>
+                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️0% 🌡️--° 💨0mph</div>
+                </div>
+                <div class="d-flex align-items-center mt-1" style="gap: 4px;">
+                    <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/23.png" style="width: 16px; height: 16px; object-fit: contain;">
+                    <span class="fw-bold text-dark lh-1" style="font-size: 0.75rem;">San José State Spartans</span>
+                    <span class="fw-bold text-muted lh-1" style="font-size: 0.7rem;">@</span>
+                    <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/30.png" style="width: 16px; height: 16px; object-fit: contain;">
+                    <span class="fw-bold text-dark lh-1" style="font-size: 0.75rem;">USC Trojans</span>
+                </div>
+            </div>
+
+            <div class="full-card-view" onclick="toggleSingleCard(event, '401864494')" style="cursor: pointer; display: block;">
+                <div class="card-body px-2 pt-2 pb-2"> 
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="badge bg-light text-dark border">Sat 3:00 PM</span>
+                        <span class="stadium-name text-truncate text-end flex-grow-1 ms-2">Los Angeles Memorial Coliseum</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center px-1 mb-1">
+                        <div class="d-flex align-items-center text-truncate" style="width: 45%; min-width: 0;"> 
+                            <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/23.png" class="me-2" style="width: 24px; height: 24px; object-fit: contain;">
+                            <div class="fw-bold lh-sm text-dark text-truncate" style="font-size: 0.95rem;">San José State Spartans</div>
+                        </div>
+                        <div class="text-center text-muted fw-bold" style="width: 10%; font-size: 0.8rem;">@</div>
+                        <div class="d-flex align-items-center justify-content-end text-truncate" style="width: 45%; min-width: 0;"> 
+                            <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/30.png" class="me-2" style="width: 24px; height: 24px; object-fit: contain;">
+                            <div class="fw-bold lh-sm text-dark text-truncate text-end" style="font-size: 0.95rem;">USC Trojans</div>
+                        </div>
+                    </div>
+                    
+        <div class="weather-row row text-center align-items-center mt-2 mx-0">
+            <div class="col-4 border-end px-1"><div class="fw-bold">--°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
+            <div class="col-4 border-end px-1"><div class="fw-bold text-primary">0%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
+            <div class="col-4 px-1"><div class="fw-bold">0 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
+        </div>
+        <div class="mt-2 mb-2">
+            <button class="btn btn-sm btn-outline-primary w-100 py-1 fw-bold" onclick="showRadar('https://embed.windy.com/embed2.html?lat=34.05223&lon=-118.24368&zoom=11&level=surface&overlay=rain&product=ecmwf', 'Los Angeles Memorial Coliseum')">🗺️ View Live Radar Map</button>
+        </div>
+    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+        </div>
+    </div>
+    
+    <!-- RADAR MODAL -->
+    <div class="modal fade" id="radarModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content shadow">
+                <div class="modal-header bg-dark text-white border-0 py-2">
+                    <h5 class="modal-title fw-bold">Live Weather Radar</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-0 bg-light" style="height: 60vh;">
+                    <iframe id="radarFrame" src="" class="w-100 h-100 border-0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#team-nav-select').select2({
+                placeholder: "🔍 Search FBS Teams...", width: '100%'
+            }).val(`/team_pages/usc-trojans/`).trigger('change.select2');
+            
+            $('#team-nav-select').on('change', function() {
+                if(this.value && this.value !== `/team_pages/usc-trojans/`) window.location.href = this.value;
+            });
+        });
+        
+        function toggleSingleCard(e, gameId) {
+            if (e && e.target.closest('a, button, input, label, select')) return; 
+            const card = document.getElementById(`game-${gameId}`);
+            if (!card) return;
+            const ribbon = card.querySelector('.ribbon-view');
+            const full = card.querySelector('.full-card-view');
+            
+            ribbon.style.display = ribbon.style.display === 'none' ? 'block' : 'none';
+            full.style.display = full.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function showRadar(url, venueName) {
+            document.querySelector('#radarModal .modal-title').innerText = `Radar: ${venueName}`;
+            document.getElementById('radarFrame').src = url;
+            bootstrap.Modal.getOrCreateInstance(document.getElementById('radarModal')).show();
+        }
+    </script>
+</body>
+</html>
