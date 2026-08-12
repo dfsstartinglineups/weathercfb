@@ -426,6 +426,13 @@ MAIN_SITE_TEMPLATE = """<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{week_label} College Football Weather & Stadium Conditions</title>
+
+    <!-- Favicon & Web Manifest Tags -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
     
     <meta name="description" content="Live College Football weather forecasts, wind speeds, and stadium conditions for {week_label}. Optimize your College Football DFS and game predictions.">
     <meta name="keywords" content="College Football weather, college football weather, DFS weather, FBS weather, NCAA football weather, live wind speed College Football">
@@ -589,6 +596,13 @@ TEAM_PAGE_TEMPLATE = """<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{page_title}</title>
+
+    <!-- Favicon & Web Manifest Tags -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
     
     <meta name="description" content="{meta_desc}">
     <meta name="keywords" content="{team_name} weather, College Football weather, college football weather, {stadium_name} wind direction, {team_name} game weather today">
