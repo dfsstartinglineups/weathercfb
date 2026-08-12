@@ -427,19 +427,19 @@ MAIN_SITE_TEMPLATE = """<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{week_label} College Football Weather & Stadium Conditions</title>
     
-    <meta name="description" content="Live College Football weather forecasts, wind speeds, and stadium conditions for {week_label}. Optimize your College Football DFS and betting lineups.">
+    <meta name="description" content="Live College Football weather forecasts, wind speeds, and stadium conditions for {week_label}. Optimize your College Football DFS and game predictions.">
     <meta name="keywords" content="College Football weather, college football weather, DFS weather, FBS weather, NCAA football weather, live wind speed College Football">
     <link rel="canonical" href="https://weathercfb.com/">
     
     <meta property="og:title" content="Live College Football Weather & Stadium Conditions - Weather CFB">
-    <meta property="og:description" content="Check live wind speeds, rain forecasts, and stadium conditions before locking your college football bets.">
+    <meta property="og:description" content="Check live wind speeds, rain forecasts, and stadium conditions before locking your college football game predictions.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://weathercfb.com/">
     <meta property="og:image" content="https://weathercfb.com/social-share.png">
     
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Live College Football Weather & Stadium Conditions - Weather CFB">
-    <meta name="twitter:description" content="Check live wind speeds, rain forecasts, and stadium conditions before locking your college football bets.">
+    <meta name="twitter:description" content="Check live wind speeds, rain forecasts, and stadium conditions before locking your college football game predictions.">
     <meta name="twitter:image" content="https://weathercfb.com/social-share.png">
     
     <script type="application/ld+json">
@@ -448,7 +448,7 @@ MAIN_SITE_TEMPLATE = """<!DOCTYPE html>
       "@type": "WebSite",
       "name": "Weather CFB",
       "url": "https://weathercfb.com/",
-      "description": "Live College Football weather, wind, and stadium conditions for sports bettors and fantasy players."
+      "description": "Live College Football weather, wind, and stadium conditions for game predictions and fantasy players."
     }}
     </script>
 
@@ -549,6 +549,17 @@ MAIN_SITE_TEMPLATE = """<!DOCTYPE html>
         
         ribbon.style.display = ribbon.style.display === 'none' ? 'block' : 'none';
         full.style.display = full.style.display === 'none' ? 'block' : 'none';
+    }}
+
+    function toggleAllWeatherCards() {{
+        globalScoreboardMode = !globalScoreboardMode;
+        $('#expand-toggle-text').text(globalScoreboardMode ? 'Expand All Cards' : 'Collapse All Cards');
+        $('#expand-toggle-icon').text(globalScoreboardMode ? '▼' : '▲');
+        
+        document.querySelectorAll('.game-card').forEach(card => {{
+            card.querySelector('.ribbon-view').style.display = globalScoreboardMode ? 'block' : 'none';
+            card.querySelector('.full-card-view').style.display = globalScoreboardMode ? 'none' : 'block';
+        }});
     }}
 
     function showRadar(url, venueName) {{
