@@ -873,6 +873,11 @@ def main():
                 "address": schema_address
             }
         }
+        
+        # Inject the start date if an active game exists
+        if target_game and target_game.get('game_time'):
+            schema_dict['startDate'] = target_game['game_time']
+            
         schema_json = json.dumps(schema_dict, indent=4)
 
         team_html = TEAM_PAGE_TEMPLATE.format(
