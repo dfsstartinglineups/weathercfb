@@ -486,7 +486,7 @@ MAIN_SITE_TEMPLATE = """<!DOCTYPE html>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ME93323RXY"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag(){{dataLayer.push(arguments);}}
       gtag('js', new Date());
 
       gtag('config', 'G-ME93323RXY');
@@ -666,7 +666,7 @@ TEAM_PAGE_TEMPLATE = """<!DOCTYPE html>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ME93323RXY"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag(){{dataLayer.push(arguments);}}
       gtag('js', new Date());
 
       gtag('config', 'G-ME93323RXY');
