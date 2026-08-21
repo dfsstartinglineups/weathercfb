@@ -150,6 +150,58 @@ def fetch_weather_api_hourly(lat, lon, game_iso_time, days_diff):
         print(f"⚠️ WeatherAPI Fetch Error: {e}")
         return None
 
+def fetch_open_meteo_hourly(lat, lon, game_iso_time):
+    """Free 14-day fallback using Open-Meteo"""
+    utc_time = datetime.datetime.fromisoformat(game_iso_time.replace('Z', '+00:00'))
+    
+    # Request 14 days of hourly data in UTC
+    url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&hourly=temperature_2m,precipitation_probability,precipitation,windspeed_10m,relativehumidity_2m,weathercode&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=UTC&forecast_days=14"
+    
+    try:
+        res = requests.get(url, timeout=10)
+        if res.status_code != 200: return None
+        
+        data = res.json().get('hourly', {})
+        times = data.get('time', [])
+        
+        # Open-Meteo time format is "YYYY-MM-DDTHH:00"
+        target_str = utc_time.strftime('%Y-%m-%dT%H:00')
+        if target_str not in times: return None
+        
+        start_idx = times.index(target_str)
+        
+        actual_start = max(0, start_idx - 1)
+        actual_end = min(len(times), start_idx + 4)
+        
+        hourly_slice = []
+        for i in range(actual_start, actual_end):
+            code = data['weathercode'][i]
+            # WMO Codes: 95, 96, 99 = Thunderstorms | 71, 73, 75, 77, 85, 86 = Snow
+            is_thunder = code in [95, 96, 99]
+            is_snow = code in [71, 73, 75, 77, 85, 86]
+            
+            hr_iso = times[i] + ":00Z"
+            
+            hourly_slice.append({
+                "timestamp": hr_iso,
+                "temp": round(data['temperature_2m'][i]),
+                "precipChance": data['precipitation_probability'][i],
+                "isThunderstorm": is_thunder,
+                "isSnow": is_snow
+            })
+            
+        return {
+            "status": "ok",
+            "temp": round(data['temperature_2m'][start_idx]),
+            "windSpeed": round(data['windspeed_10m'][start_idx]),
+            "precip": round(data['precipitation'][start_idx], 2),
+            "humidity": round(data['relativehumidity_2m'][start_idx]),
+            "hourly": hourly_slice
+        }
+    except Exception as e:
+        print(f"⚠️ Open-Meteo Fetch Error: {e}")
+        return None
+
 def fetch_game_weather(lat, lon, game_iso_time):
     utc_time = datetime.datetime.fromisoformat(game_iso_time.replace('Z', '+00:00'))
     today_utc = datetime.datetime.now(timezone.utc).date()
@@ -158,8 +210,15 @@ def fetch_game_weather(lat, lon, game_iso_time):
     if days_diff > 14 or days_diff < -1:
         return {"status": "too_early", "temp": "--", "windSpeed": 0, "precip": 0, "humidity": "--", "hourly": []}
 
-    weather = fetch_weather_api_hourly(lat, lon, game_iso_time, days_diff)
+    # Use WeatherAPI for games within 72 hours (Days 0, 1, 2)
+    if days_diff <= 2 and WEATHER_API_KEY:
+        weather = fetch_weather_api_hourly(lat, lon, game_iso_time, days_diff)
+        if weather: return weather
+        
+    # Fallback to Open-Meteo for > 3 days out, or if WeatherAPI fails
+    weather = fetch_open_meteo_hourly(lat, lon, game_iso_time)
     if weather: return weather
+
     return {"status": "error", "temp": "--", "windSpeed": 0, "precip": 0, "humidity": "--", "hourly": []}
 
 # ==========================================
