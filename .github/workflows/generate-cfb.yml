@@ -5,6 +5,11 @@ on:
   repository_dispatch: 
     types: [update-cfb-weather] # Enables external webhook triggering from cron-job.org
 
+# Forces concurrent runs to queue up and wait for the active one to finish
+concurrency:
+  group: "cfb-weather-generator"
+  cancel-in-progress: false
+
 # Grant write access to push commits back to the repository
 permissions:
   contents: write
