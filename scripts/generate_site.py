@@ -64,12 +64,18 @@ def write_if_changed(filepath, new_content):
 # ==========================================
 # 3. FIREBASE DISCOVERY & GEOCODING
 # ==========================================
-def geocode_venue_multi_stage(stadium_name, city, home_team):
+def geocode_venue_multi_stage(stadium_name, city, state, home_team):
     """Fallback cascading geocoder using Open-Meteo with rate limiting"""
     base_url = "https://geocoding-api.open-meteo.com/v1/search"
+    
+    # Append state to city for much higher accuracy
+    city_state = f"{city} {state}".strip()
+    
     queries = [
-        f"{stadium_name} {city}",
+        f"{stadium_name} {city_state}",
+        f"{stadium_name} {state}",
         stadium_name,
+        city_state,
         city,
         f"{home_team} stadium"
     ]
@@ -305,7 +311,8 @@ def get_current_cfb_schedule(venues_dict, teams_dict):
                 s_state = espn_venue.get('address', {}).get('state', '')
                 is_indoor = espn_venue.get('indoor', False)
                 
-                lat, lon = geocode_venue_multi_stage(s_name, s_city, home_comp['team']['displayName'] if home_comp else "")
+                # Update this line to include s_state
+                lat, lon = geocode_venue_multi_stage(s_name, s_city, s_state, home_comp['team']['displayName'] if home_comp else "")
                 
                 stadium_info = {
                     "id": venue_id,
