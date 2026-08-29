@@ -425,14 +425,14 @@ def render_game_card(game, is_single_team=False):
 
             pop_str = f"{pc}%" if pc >= 20 else "&nbsp;"
             hours_markup += f'''
-            <div class="d-flex flex-column align-items-center" style="min-width: 55px; text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.65rem;">{hr_str}</div>
-                <div style="font-size: 1.1rem;">{icon}</div>
-                <div class="text-primary fw-bold" style="font-size: 0.65rem; height: 12px;">{pop_str}</div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">{hr_str}</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">{icon}</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">{pop_str}</div>
                 <div class="fw-bold" style="font-size: 0.75rem;">{h.get('temp', '--')}°</div>
             </div>'''
             
-        hourly_html = f'<div class="d-flex overflow-auto gap-2 py-2 mt-2 border-top justify-content-start" style="scrollbar-width: none;">{hours_markup}</div>'
+        hourly_html = f'<div class="d-flex justify-content-between w-100 py-2 mt-2 border-top" style="scrollbar-width: none;">{hours_markup}</div>'
 
     # --- UPDATED: Inject hourly_html into the section ---
     weather_section = f"""
