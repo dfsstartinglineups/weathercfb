@@ -405,6 +405,36 @@ def render_game_card(game, is_single_team=False):
     stadium_name = stadium.get('name', 'TBD Location')
     radar_url = f"https://embed.windy.com/embed2.html?lat={stadium.get('lat',0)}&lon={stadium.get('lon',0)}&zoom=11&level=surface&overlay=rain&product=ecmwf"
 
+    # --- NEW: Build the Hourly Forecast HTML ---
+    hourly_html = ""
+    if not is_too_early and not is_dome and hourly_list:
+        hours_markup = ""
+        for h in hourly_list[:5]:  # Show the next 5 hours
+            try:
+                dt = datetime.datetime.fromisoformat(h['timestamp'].replace('Z', '+00:00')).astimezone(EST_TZ)
+                hr_str = dt.strftime('%I%p').lstrip('0')
+            except Exception:
+                hr_str = "--"
+
+            icon = "☀️"
+            pc = h.get('precipChance', 0)
+            if pc >= 30:
+                icon = "⛈️" if h.get('isThunderstorm') else ("🌨️" if h.get('isSnow') else "🌧️")
+            elif pc > 0:
+                icon = "⛅"
+
+            pop_str = f"{pc}%" if pc >= 20 else "&nbsp;"
+            hours_markup += f'''
+            <div class="d-flex flex-column align-items-center" style="min-width: 55px; text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.65rem;">{hr_str}</div>
+                <div style="font-size: 1.1rem;">{icon}</div>
+                <div class="text-primary fw-bold" style="font-size: 0.65rem; height: 12px;">{pop_str}</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">{h.get('temp', '--')}°</div>
+            </div>'''
+            
+        hourly_html = f'<div class="d-flex overflow-auto gap-2 py-2 mt-2 border-top justify-content-start" style="scrollbar-width: none;">{hours_markup}</div>'
+
+    # --- UPDATED: Inject hourly_html into the section ---
     weather_section = f"""
         <div class="weather-row row text-center align-items-center mt-2 mx-0">
             <div class="col-3 border-end px-1"><div class="fw-bold">{temp_val}°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
@@ -412,6 +442,7 @@ def render_game_card(game, is_single_team=False):
             <div class="col-3 border-end px-1"><div class="fw-bold text-info">{display_humid}</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
             <div class="col-3 px-1"><div class="fw-bold">{wind_val} <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
         </div>
+        {hourly_html}
         <div class="mt-2 mb-2">
             <button class="btn btn-sm btn-outline-primary w-100 py-1 fw-bold" onclick="showRadar('{radar_url}', '{stadium_name}')">🗺️ View Live Radar Map</button>
         </div>
