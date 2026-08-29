@@ -65,30 +65,39 @@ def write_if_changed(filepath, new_content):
 # 3. FIREBASE DISCOVERY & GEOCODING
 # ==========================================
 def geocode_venue_multi_stage(stadium_name, city, state, home_team):
-    """Fallback cascading geocoder using Open-Meteo with rate limiting"""
+    """Fallback cascading geocoder using Open-Meteo with exact state filtering"""
     base_url = "https://geocoding-api.open-meteo.com/v1/search"
     
-    # Append state to city for much higher accuracy
-    city_state = f"{city} {state}".strip()
-    
+    # Keep queries simple so the API actually finds results
     queries = [
-        f"{stadium_name} {city_state}",
-        f"{stadium_name} {state}",
         stadium_name,
-        city_state,
-        city,
-        f"{home_team} stadium"
+        f"{home_team} stadium",
+        city
     ]
     
     for q in queries:
         if not q or not str(q).strip(): 
             continue
         try:
-            res = requests.get(base_url, params={"name": q.strip(), "count": 1}, timeout=10)
+            # Request 10 results instead of 1 so we can filter them
+            res = requests.get(base_url, params={"name": q.strip(), "count": 10}, timeout=10)
             if res.status_code == 200:
                 results = res.json().get('results')
                 if results:
                     time.sleep(1) # Prevent hammering the API on success
+                    
+                    # 1. Filter results to find an exact match for the State
+                    if state:
+                        state_lower = state.lower().strip()
+                        for r in results:
+                            admin1 = r.get('admin1', '').lower()
+                            admin1_code = r.get('admin1_code', '').lower()
+                            
+                            # Matches "CA" == "ca" or "California" == "california"
+                            if state_lower in admin1 or state_lower == admin1_code:
+                                return r['latitude'], r['longitude']
+                                
+                    # 2. If no state matched, fallback to the top result
                     return results[0]['latitude'], results[0]['longitude']
         except Exception as e:
             print(f"⚠️ Geocoding failed for {q}: {e}")
