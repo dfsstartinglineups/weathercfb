@@ -940,11 +940,28 @@ def main():
             if date_str not in games_by_date: games_by_date[date_str] = []
             games_by_date[date_str].append(g)
             
-        cards_content = ""
+        active_days_html = ""
+        completed_days_html = ""
+        
         for date_str, daily_games in games_by_date.items():
-            cards_content += f'<div class="col-12 mt-4 mb-2"><h3 class="h5 fw-bold text-dark border-bottom pb-2">{date_str}</h3></div>'
+            # 1. Sort games: 'post' (final) games move to the bottom, then sort chronologically
+            daily_games.sort(key=lambda x: (x['status'] == 'post', x['game_time']))
+            
+            # 2. Check if the entire day is finished
+            is_day_complete = all(g['status'] == 'post' for g in daily_games)
+            
+            day_html = f'<div class="col-12 mt-4 mb-2"><h3 class="h5 fw-bold text-dark border-bottom pb-2">{date_str}</h3></div>'
             for g in daily_games:
-                cards_content += render_game_card(g, is_single_team=False)
+                day_html += render_game_card(g, is_single_team=False)
+                
+            # 3. Append to the correct block
+            if is_day_complete:
+                completed_days_html += day_html
+            else:
+                active_days_html += day_html
+                
+        # Combine them, ensuring active days always sit at the top of the page
+        cards_content = active_days_html + completed_days_html
     else:
         cards_content = f'<div class="col-12 text-center py-5"><div class="alert alert-light border shadow-sm"><h5>No Games Scheduled for {week_label}</h5></div></div>'
 
