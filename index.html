@@ -2636,12 +2636,12 @@
     </div>
     
     <div class="col-md-6 col-lg-4 col-xl-3 mb-3 px-1" id="game-401858432">
-        <div class="card game-card shadow-sm  bg-light" style="overflow: hidden;">
+        <div class="card game-card shadow-sm border-warning border-3 bg-weather-rain" style="overflow: hidden;">
             
             <div class="ribbon-view p-2 position-relative" onclick="toggleSingleCard(event, '401858432')" style="cursor: pointer; display: block;">
                 <div class="d-flex align-items-center mb-1">
                     <span class="badge bg-light text-dark border flex-shrink-0 px-2 py-1" style="font-size: 0.65rem;">Sat 12:30 PM</span>
-                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️0% 🌡️--° 💨0mph 💧--</div>
+                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️30% 🌡️82° 💨4mph 💧54%</div>
                 </div>
                 <div class="d-flex align-items-center mt-1" style="gap: 4px;">
                     <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2050.png" style="width: 16px; height: 16px; object-fit: contain;">
@@ -2671,12 +2671,42 @@
                     </div>
                     
         <div class="weather-row row text-center align-items-center mt-2 mx-0">
-            <div class="col-3 border-end px-1"><div class="fw-bold">--°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">0%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-info">--</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
-            <div class="col-3 px-1"><div class="fw-bold">0 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold">82°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">30%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-info">54%</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
+            <div class="col-3 px-1"><div class="fw-bold">4 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
         </div>
-        
+        <div class="d-flex justify-content-between w-100 py-2 mt-2 border-top" style="scrollbar-width: none;">
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">11AM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">80°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">12PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">82°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">1PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">84°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">2PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">85°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">3PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">🌧️</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">30%</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">86°</div>
+            </div></div>
         <div class="mt-2 mb-2">
             <button class="btn btn-sm btn-outline-primary w-100 py-1 fw-bold" onclick="showRadar('https://embed.windy.com/embed2.html?lat=39.96118&lon=-82.99879&zoom=11&level=surface&overlay=rain&product=ecmwf', 'Ohio Stadium')">🗺️ View Live Radar Map</button>
         </div>
@@ -2688,12 +2718,12 @@
     </div>
     
     <div class="col-md-6 col-lg-4 col-xl-3 mb-3 px-1" id="game-401858207">
-        <div class="card game-card shadow-sm  bg-light" style="overflow: hidden;">
+        <div class="card game-card shadow-sm  bg-weather-sunny" style="overflow: hidden;">
             
             <div class="ribbon-view p-2 position-relative" onclick="toggleSingleCard(event, '401858207')" style="cursor: pointer; display: block;">
                 <div class="d-flex align-items-center mb-1">
                     <span class="badge bg-light text-dark border flex-shrink-0 px-2 py-1" style="font-size: 0.65rem;">Sat 12:30 PM</span>
-                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️0% 🌡️--° 💨0mph 💧--</div>
+                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️8% 🌡️75° 💨5mph 💧56%</div>
                 </div>
                 <div class="d-flex align-items-center mt-1" style="gap: 4px;">
                     <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/193.png" style="width: 16px; height: 16px; object-fit: contain;">
@@ -2723,12 +2753,42 @@
                     </div>
                     
         <div class="weather-row row text-center align-items-center mt-2 mx-0">
-            <div class="col-3 border-end px-1"><div class="fw-bold">--°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">0%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-info">--</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
-            <div class="col-3 px-1"><div class="fw-bold">0 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold">75°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">8%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-info">56%</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
+            <div class="col-3 px-1"><div class="fw-bold">5 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
         </div>
-        
+        <div class="d-flex justify-content-between w-100 py-2 mt-2 border-top" style="scrollbar-width: none;">
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">11AM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">73°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">12PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">75°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">1PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">78°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">2PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">80°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">3PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">81°</div>
+            </div></div>
         <div class="mt-2 mb-2">
             <button class="btn btn-sm btn-outline-primary w-100 py-1 fw-bold" onclick="showRadar('https://embed.windy.com/embed2.html?lat=40.44062&lon=-79.99589&zoom=11&level=surface&overlay=rain&product=ecmwf', 'Acrisure Stadium')">🗺️ View Live Radar Map</button>
         </div>
@@ -2792,12 +2852,12 @@
     </div>
     
     <div class="col-md-6 col-lg-4 col-xl-3 mb-3 px-1" id="game-401856659">
-        <div class="card game-card shadow-sm  bg-weather-cloudy" style="overflow: hidden;">
+        <div class="card game-card shadow-sm  bg-light" style="overflow: hidden;">
             
             <div class="ribbon-view p-2 position-relative" onclick="toggleSingleCard(event, '401856659')" style="cursor: pointer; display: block;">
                 <div class="d-flex align-items-center mb-1">
                     <span class="badge bg-light text-dark border flex-shrink-0 px-2 py-1" style="font-size: 0.65rem;">Sat 1:00 PM</span>
-                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️21% 🌡️88° 💨5mph 💧56%</div>
+                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️0% 🌡️--° 💨0mph 💧--</div>
                 </div>
                 <div class="d-flex align-items-center mt-1" style="gap: 4px;">
                     <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2754.png" style="width: 16px; height: 16px; object-fit: contain;">
@@ -2827,42 +2887,12 @@
                     </div>
                     
         <div class="weather-row row text-center align-items-center mt-2 mx-0">
-            <div class="col-3 border-end px-1"><div class="fw-bold">88°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">21%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-info">56%</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
-            <div class="col-3 px-1"><div class="fw-bold">5 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold">--°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">0%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-info">--</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
+            <div class="col-3 px-1"><div class="fw-bold">0 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
         </div>
-        <div class="d-flex justify-content-between w-100 py-2 mt-2 border-top" style="scrollbar-width: none;">
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">12PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">86°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">1PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">88°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">2PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">90°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">3PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">21%</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">90°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">4PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">21%</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">91°</div>
-            </div></div>
+        
         <div class="mt-2 mb-2">
             <button class="btn btn-sm btn-outline-primary w-100 py-1 fw-bold" onclick="showRadar('https://embed.windy.com/embed2.html?lat=37.98869&lon=-84.47772&zoom=11&level=surface&overlay=rain&product=ecmwf', 'Kroger Field')">🗺️ View Live Radar Map</button>
         </div>
@@ -2874,12 +2904,12 @@
     </div>
     
     <div class="col-md-6 col-lg-4 col-xl-3 mb-3 px-1" id="game-401856779">
-        <div class="card game-card shadow-sm  bg-weather-cloudy" style="overflow: hidden;">
+        <div class="card game-card shadow-sm  bg-light" style="overflow: hidden;">
             
             <div class="ribbon-view p-2 position-relative" onclick="toggleSingleCard(event, '401856779')" style="cursor: pointer; display: block;">
                 <div class="d-flex align-items-center mb-1">
                     <span class="badge bg-light text-dark border flex-shrink-0 px-2 py-1" style="font-size: 0.65rem;">Sat 1:00 PM</span>
-                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️15% 🌡️92° 💨4mph 💧40%</div>
+                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️0% 🌡️--° 💨0mph 💧--</div>
                 </div>
                 <div class="d-flex align-items-center mt-1" style="gap: 4px;">
                     <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2546.png" style="width: 16px; height: 16px; object-fit: contain;">
@@ -2909,42 +2939,12 @@
                     </div>
                     
         <div class="weather-row row text-center align-items-center mt-2 mx-0">
-            <div class="col-3 border-end px-1"><div class="fw-bold">92°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">15%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-info">40%</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
-            <div class="col-3 px-1"><div class="fw-bold">4 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold">--°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">0%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-info">--</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
+            <div class="col-3 px-1"><div class="fw-bold">0 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
         </div>
-        <div class="d-flex justify-content-between w-100 py-2 mt-2 border-top" style="scrollbar-width: none;">
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">12PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">88°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">1PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">92°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">2PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">97°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">3PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">100°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">4PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">102°</div>
-            </div></div>
+        
         <div class="mt-2 mb-2">
             <button class="btn btn-sm btn-outline-primary w-100 py-1 fw-bold" onclick="showRadar('https://embed.windy.com/embed2.html?lat=42.03471&lon=-93.61994&zoom=11&level=surface&overlay=rain&product=ecmwf', 'Jack Trice Stadium')">🗺️ View Live Radar Map</button>
         </div>
@@ -3125,7 +3125,7 @@
             <div class="ribbon-view p-2 position-relative" onclick="toggleSingleCard(event, '401856658')" style="cursor: pointer; display: block;">
                 <div class="d-flex align-items-center mb-1">
                     <span class="badge bg-light text-dark border flex-shrink-0 px-2 py-1" style="font-size: 0.65rem;">Sat 3:00 PM</span>
-                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️0% 🌡️80° 💨3mph 💧46%</div>
+                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️0% 🌡️79° 💨3mph 💧41%</div>
                 </div>
                 <div class="d-flex align-items-center mt-1" style="gap: 4px;">
                     <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2634.png" style="width: 16px; height: 16px; object-fit: contain;">
@@ -3155,9 +3155,9 @@
                     </div>
                     
         <div class="weather-row row text-center align-items-center mt-2 mx-0">
-            <div class="col-3 border-end px-1"><div class="fw-bold">80°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold">79°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
             <div class="col-3 border-end px-1"><div class="fw-bold text-primary">0%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-info">46%</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-info">41%</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
             <div class="col-3 px-1"><div class="fw-bold">3 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
         </div>
         <div class="d-flex justify-content-between w-100 py-2 mt-2 border-top" style="scrollbar-width: none;">
@@ -3171,13 +3171,13 @@
                 <div class="text-muted fw-bold" style="font-size: 0.6rem;">3PM</div>
                 <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">☀️</div>
                 <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">80°</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">79°</div>
             </div>
             <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
                 <div class="text-muted fw-bold" style="font-size: 0.6rem;">4PM</div>
                 <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">☀️</div>
                 <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">78°</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">77°</div>
             </div>
             <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
                 <div class="text-muted fw-bold" style="font-size: 0.6rem;">5PM</div>
@@ -3189,7 +3189,7 @@
                 <div class="text-muted fw-bold" style="font-size: 0.6rem;">6PM</div>
                 <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">☀️</div>
                 <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">75°</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">74°</div>
             </div></div>
         <div class="mt-2 mb-2">
             <button class="btn btn-sm btn-outline-primary w-100 py-1 fw-bold" onclick="showRadar('https://embed.windy.com/embed2.html?lat=37.98376&lon=23.72784&zoom=11&level=surface&overlay=rain&product=ecmwf', 'Sanford Stadium')">🗺️ View Live Radar Map</button>
@@ -4096,12 +4096,12 @@
     </div>
     
     <div class="col-md-6 col-lg-4 col-xl-3 mb-3 px-1" id="game-401856772">
-        <div class="card game-card shadow-sm  bg-light" style="overflow: hidden;">
+        <div class="card game-card shadow-sm  bg-weather-sunny" style="overflow: hidden;">
             
             <div class="ribbon-view p-2 position-relative" onclick="toggleSingleCard(event, '401856772')" style="cursor: pointer; display: block;">
                 <div class="d-flex align-items-center mb-1">
                     <span class="badge bg-light text-dark border flex-shrink-0 px-2 py-1" style="font-size: 0.65rem;">Sat 3:45 PM</span>
-                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️0% 🌡️--° 💨0mph 💧--</div>
+                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️0% 🌡️101° 💨8mph 💧26%</div>
                 </div>
                 <div class="d-flex align-items-center mt-1" style="gap: 4px;">
                     <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/197.png" style="width: 16px; height: 16px; object-fit: contain;">
@@ -4131,12 +4131,42 @@
                     </div>
                     
         <div class="weather-row row text-center align-items-center mt-2 mx-0">
-            <div class="col-3 border-end px-1"><div class="fw-bold">--°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold">101°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
             <div class="col-3 border-end px-1"><div class="fw-bold text-primary">0%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-info">--</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
-            <div class="col-3 px-1"><div class="fw-bold">0 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-info">26%</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
+            <div class="col-3 px-1"><div class="fw-bold">8 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
         </div>
-        
+        <div class="d-flex justify-content-between w-100 py-2 mt-2 border-top" style="scrollbar-width: none;">
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">2PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">☀️</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">100°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">3PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">☀️</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">101°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">4PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">☀️</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">103°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">5PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">☀️</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">104°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">6PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">☀️</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">104°</div>
+            </div></div>
         <div class="mt-2 mb-2">
             <button class="btn btn-sm btn-outline-primary w-100 py-1 fw-bold" onclick="showRadar('https://embed.windy.com/embed2.html?lat=36.15398&lon=-95.99277&zoom=11&level=surface&overlay=rain&product=ecmwf', 'H. A. Chapman Stadium')">🗺️ View Live Radar Map</button>
         </div>
@@ -4148,12 +4178,12 @@
     </div>
     
     <div class="col-md-6 col-lg-4 col-xl-3 mb-3 px-1" id="game-401858426">
-        <div class="card game-card shadow-sm  bg-light" style="overflow: hidden;">
+        <div class="card game-card shadow-sm  bg-weather-sunny" style="overflow: hidden;">
             
             <div class="ribbon-view p-2 position-relative" onclick="toggleSingleCard(event, '401858426')" style="cursor: pointer; display: block;">
                 <div class="d-flex align-items-center mb-1">
                     <span class="badge bg-light text-dark border flex-shrink-0 px-2 py-1" style="font-size: 0.65rem;">Sat 4:15 PM</span>
-                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️0% 🌡️--° 💨0mph 💧--</div>
+                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️6% 🌡️97° 💨4mph 💧37%</div>
                 </div>
                 <div class="d-flex align-items-center mt-1" style="gap: 4px;">
                     <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2459.png" style="width: 16px; height: 16px; object-fit: contain;">
@@ -4183,12 +4213,42 @@
                     </div>
                     
         <div class="weather-row row text-center align-items-center mt-2 mx-0">
-            <div class="col-3 border-end px-1"><div class="fw-bold">--°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">0%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-info">--</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
-            <div class="col-3 px-1"><div class="fw-bold">0 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold">97°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">6%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-info">37%</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
+            <div class="col-3 px-1"><div class="fw-bold">4 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
         </div>
-        
+        <div class="d-flex justify-content-between w-100 py-2 mt-2 border-top" style="scrollbar-width: none;">
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">3PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">97°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">4PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">97°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">5PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">97°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">6PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">96°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">7PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">94°</div>
+            </div></div>
         <div class="mt-2 mb-2">
             <button class="btn btn-sm btn-outline-primary w-100 py-1 fw-bold" onclick="showRadar('https://embed.windy.com/embed2.html?lat=41.66113&lon=-91.53017&zoom=11&level=surface&overlay=rain&product=ecmwf', 'Kinnick Stadium')">🗺️ View Live Radar Map</button>
         </div>
@@ -4200,12 +4260,12 @@
     </div>
     
     <div class="col-md-6 col-lg-4 col-xl-3 mb-3 px-1" id="game-401856635">
-        <div class="card game-card shadow-sm  bg-light" style="overflow: hidden;">
+        <div class="card game-card shadow-sm border-warning border-3 bg-weather-rain" style="overflow: hidden;">
             
             <div class="ribbon-view p-2 position-relative" onclick="toggleSingleCard(event, '401856635')" style="cursor: pointer; display: block;">
                 <div class="d-flex align-items-center mb-1">
                     <span class="badge bg-light text-dark border flex-shrink-0 px-2 py-1" style="font-size: 0.65rem;">Sat 4:15 PM</span>
-                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️0% 🌡️--° 💨0mph 💧--</div>
+                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️53% 🌡️95° 💨7mph 💧44%</div>
                 </div>
                 <div class="d-flex align-items-center mt-1" style="gap: 4px;">
                     <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2453.png" style="width: 16px; height: 16px; object-fit: contain;">
@@ -4235,12 +4295,42 @@
                     </div>
                     
         <div class="weather-row row text-center align-items-center mt-2 mx-0">
-            <div class="col-3 border-end px-1"><div class="fw-bold">--°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">0%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-info">--</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
-            <div class="col-3 px-1"><div class="fw-bold">0 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold">95°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">53%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-info">44%</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
+            <div class="col-3 px-1"><div class="fw-bold">7 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
         </div>
-        
+        <div class="d-flex justify-content-between w-100 py-2 mt-2 border-top" style="scrollbar-width: none;">
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">3PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">🌧️</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">53%</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">94°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">4PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">🌧️</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">53%</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">95°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">5PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">🌧️</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">53%</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">94°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">6PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">🌧️</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">53%</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">91°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">7PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">🌧️</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">53%</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">88°</div>
+            </div></div>
         <div class="mt-2 mb-2">
             <button class="btn btn-sm btn-outline-primary w-100 py-1 fw-bold" onclick="showRadar('https://embed.windy.com/embed2.html?lat=35.05266&lon=-78.87836&zoom=11&level=surface&overlay=rain&product=ecmwf', 'Donald W. Reynolds Razorback Stadium')">🗺️ View Live Radar Map</button>
         </div>
@@ -4498,12 +4588,12 @@
     </div>
     
     <div class="col-md-6 col-lg-4 col-xl-3 mb-3 px-1" id="game-401856668">
-        <div class="card game-card shadow-sm border-warning border-3 bg-weather-rain" style="overflow: hidden;">
+        <div class="card game-card shadow-sm  bg-light" style="overflow: hidden;">
             
             <div class="ribbon-view p-2 position-relative" onclick="toggleSingleCard(event, '401856668')" style="cursor: pointer; display: block;">
                 <div class="d-flex align-items-center mb-1">
                     <span class="badge bg-light text-dark border flex-shrink-0 px-2 py-1" style="font-size: 0.65rem;">Sat 7:00 PM</span>
-                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️13% 🌡️78° 💨17mph 💧75%</div>
+                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️0% 🌡️--° 💨0mph 💧--</div>
                 </div>
                 <div class="d-flex align-items-center mt-1" style="gap: 4px;">
                     <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2623.png" style="width: 16px; height: 16px; object-fit: contain;">
@@ -4533,42 +4623,12 @@
                     </div>
                     
         <div class="weather-row row text-center align-items-center mt-2 mx-0">
-            <div class="col-3 border-end px-1"><div class="fw-bold">78°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">13%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-info">75%</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
-            <div class="col-3 px-1"><div class="fw-bold">17 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold">--°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">0%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-info">--</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
+            <div class="col-3 px-1"><div class="fw-bold">0 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
         </div>
-        <div class="d-flex justify-content-between w-100 py-2 mt-2 border-top" style="scrollbar-width: none;">
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">6PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">101°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">7PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">78°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">8PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">75°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">9PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">75°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">10PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">75°</div>
-            </div></div>
+        
         <div class="mt-2 mb-2">
             <button class="btn btn-sm btn-outline-primary w-100 py-1 fw-bold" onclick="showRadar('https://embed.windy.com/embed2.html?lat=36.66458&lon=-88.37278&zoom=11&level=surface&overlay=rain&product=ecmwf', 'Kyle Field')">🗺️ View Live Radar Map</button>
         </div>
@@ -4580,12 +4640,12 @@
     </div>
     
     <div class="col-md-6 col-lg-4 col-xl-3 mb-3 px-1" id="game-401856770">
-        <div class="card game-card shadow-sm  bg-weather-cloudy" style="overflow: hidden;">
+        <div class="card game-card shadow-sm  bg-light" style="overflow: hidden;">
             
             <div class="ribbon-view p-2 position-relative" onclick="toggleSingleCard(event, '401856770')" style="cursor: pointer; display: block;">
                 <div class="d-flex align-items-center mb-1">
                     <span class="badge bg-light text-dark border flex-shrink-0 px-2 py-1" style="font-size: 0.65rem;">Sat 7:00 PM</span>
-                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️5% 🌡️94° 💨12mph 💧27%</div>
+                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️0% 🌡️--° 💨0mph 💧--</div>
                 </div>
                 <div class="d-flex align-items-center mt-1" style="gap: 4px;">
                     <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2000.png" style="width: 16px; height: 16px; object-fit: contain;">
@@ -4615,42 +4675,12 @@
                     </div>
                     
         <div class="weather-row row text-center align-items-center mt-2 mx-0">
-            <div class="col-3 border-end px-1"><div class="fw-bold">94°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">5%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-info">27%</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
-            <div class="col-3 px-1"><div class="fw-bold">12 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold">--°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">0%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-info">--</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
+            <div class="col-3 px-1"><div class="fw-bold">0 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
         </div>
-        <div class="d-flex justify-content-between w-100 py-2 mt-2 border-top" style="scrollbar-width: none;">
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">6PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">95°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">7PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">94°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">8PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">94°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">9PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">90°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">10PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">87°</div>
-            </div></div>
+        
         <div class="mt-2 mb-2">
             <button class="btn btn-sm btn-outline-primary w-100 py-1 fw-bold" onclick="showRadar('https://embed.windy.com/embed2.html?lat=33.57786&lon=-101.85517&zoom=11&level=surface&overlay=rain&product=ecmwf', 'Galaxy Stadium')">🗺️ View Live Radar Map</button>
         </div>
@@ -4662,12 +4692,12 @@
     </div>
     
     <div class="col-md-6 col-lg-4 col-xl-3 mb-3 px-1" id="game-401856669">
-        <div class="card game-card shadow-sm  bg-weather-cloudy" style="overflow: hidden;">
+        <div class="card game-card shadow-sm  bg-light" style="overflow: hidden;">
             
             <div class="ribbon-view p-2 position-relative" onclick="toggleSingleCard(event, '401856669')" style="cursor: pointer; display: block;">
                 <div class="d-flex align-items-center mb-1">
                     <span class="badge bg-light text-dark border flex-shrink-0 px-2 py-1" style="font-size: 0.65rem;">Sat 7:00 PM</span>
-                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️24% 🌡️94° 💨5mph 💧39%</div>
+                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️0% 🌡️--° 💨0mph 💧--</div>
                 </div>
                 <div class="d-flex align-items-center mt-1" style="gap: 4px;">
                     <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2046.png" style="width: 16px; height: 16px; object-fit: contain;">
@@ -4697,42 +4727,12 @@
                     </div>
                     
         <div class="weather-row row text-center align-items-center mt-2 mx-0">
-            <div class="col-3 border-end px-1"><div class="fw-bold">94°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">24%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-info">39%</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
-            <div class="col-3 px-1"><div class="fw-bold">5 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold">--°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">0%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-info">--</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
+            <div class="col-3 px-1"><div class="fw-bold">0 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
         </div>
-        <div class="d-flex justify-content-between w-100 py-2 mt-2 border-top" style="scrollbar-width: none;">
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">6PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">24%</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">95°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">7PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">24%</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">94°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">8PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">24%</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">91°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">9PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">88°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">10PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">82°</div>
-            </div></div>
+        
         <div class="mt-2 mb-2">
             <button class="btn btn-sm btn-outline-primary w-100 py-1 fw-bold" onclick="showRadar('https://embed.windy.com/embed2.html?lat=36.16589&lon=-86.78444&zoom=11&level=surface&overlay=rain&product=ecmwf', 'FirstBank Stadium')">🗺️ View Live Radar Map</button>
         </div>
@@ -5482,12 +5482,12 @@
     </div>
     
     <div class="col-md-6 col-lg-4 col-xl-3 mb-3 px-1" id="game-401870763">
-        <div class="card game-card shadow-sm  bg-light" style="overflow: hidden;">
+        <div class="card game-card shadow-sm  bg-weather-sunny" style="overflow: hidden;">
             
             <div class="ribbon-view p-2 position-relative" onclick="toggleSingleCard(event, '401870763')" style="cursor: pointer; display: block;">
                 <div class="d-flex align-items-center mb-1">
                     <span class="badge bg-light text-dark border flex-shrink-0 px-2 py-1" style="font-size: 0.65rem;">Sat 7:00 PM</span>
-                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️0% 🌡️--° 💨0mph 💧--</div>
+                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️8% 🌡️68° 💨9mph 💧70%</div>
                 </div>
                 <div class="d-flex align-items-center mt-1" style="gap: 4px;">
                     <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2534.png" style="width: 16px; height: 16px; object-fit: contain;">
@@ -5517,12 +5517,42 @@
                     </div>
                     
         <div class="weather-row row text-center align-items-center mt-2 mx-0">
-            <div class="col-3 border-end px-1"><div class="fw-bold">--°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">0%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-info">--</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
-            <div class="col-3 px-1"><div class="fw-bold">0 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold">68°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">8%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-info">70%</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
+            <div class="col-3 px-1"><div class="fw-bold">9 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
         </div>
-        
+        <div class="d-flex justify-content-between w-100 py-2 mt-2 border-top" style="scrollbar-width: none;">
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">6PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">71°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">7PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">68°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">8PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">66°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">9PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">64°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">10PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">63°</div>
+            </div></div>
         <div class="mt-2 mb-2">
             <button class="btn btn-sm btn-outline-primary w-100 py-1 fw-bold" onclick="showRadar('https://embed.windy.com/embed2.html?lat=42.72841&lon=-73.69179&zoom=11&level=surface&overlay=rain&product=ecmwf', 'Veterans Memorial Stadium (AL)')">🗺️ View Live Radar Map</button>
         </div>
@@ -5534,12 +5564,12 @@
     </div>
     
     <div class="col-md-6 col-lg-4 col-xl-3 mb-3 px-1" id="game-401856660">
-        <div class="card game-card shadow-sm  bg-light" style="overflow: hidden;">
+        <div class="card game-card shadow-sm border-danger border-3 bg-weather-storm" style="overflow: hidden;">
             
             <div class="ribbon-view p-2 position-relative" onclick="toggleSingleCard(event, '401856660')" style="cursor: pointer; display: block;">
                 <div class="d-flex align-items-center mb-1">
                     <span class="badge bg-light text-dark border flex-shrink-0 px-2 py-1" style="font-size: 0.65rem;">Sat 7:30 PM</span>
-                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️0% 🌡️--° 💨0mph 💧--</div>
+                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️66% 🌡️92° 💨2mph 💧49%</div>
                 </div>
                 <div class="d-flex align-items-center mt-1" style="gap: 4px;">
                     <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/228.png" style="width: 16px; height: 16px; object-fit: contain;">
@@ -5569,12 +5599,42 @@
                     </div>
                     
         <div class="weather-row row text-center align-items-center mt-2 mx-0">
-            <div class="col-3 border-end px-1"><div class="fw-bold">--°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">0%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-info">--</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
-            <div class="col-3 px-1"><div class="fw-bold">0 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold">92°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">66%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-info">49%</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
+            <div class="col-3 px-1"><div class="fw-bold">2 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
         </div>
-        
+        <div class="d-flex justify-content-between w-100 py-2 mt-2 border-top" style="scrollbar-width: none;">
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">6PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">🌧️</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">66%</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">92°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">7PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">🌧️</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">66%</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">92°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">8PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">🌧️</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">66%</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">89°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">9PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">86°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">10PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">84°</div>
+            </div></div>
         <div class="mt-2 mb-2">
             <button class="btn btn-sm btn-outline-primary w-100 py-1 fw-bold" onclick="showRadar('https://embed.windy.com/embed2.html?lat=30.44332&lon=-91.18747&zoom=11&level=surface&overlay=rain&product=ecmwf', 'Tiger Stadium (LA)')">🗺️ View Live Radar Map</button>
         </div>
@@ -5586,12 +5646,12 @@
     </div>
     
     <div class="col-md-6 col-lg-4 col-xl-3 mb-3 px-1" id="game-401858428">
-        <div class="card game-card shadow-sm  bg-light" style="overflow: hidden;">
+        <div class="card game-card shadow-sm  bg-weather-sunny" style="overflow: hidden;">
             
             <div class="ribbon-view p-2 position-relative" onclick="toggleSingleCard(event, '401858428')" style="cursor: pointer; display: block;">
                 <div class="d-flex align-items-center mb-1">
                     <span class="badge bg-light text-dark border flex-shrink-0 px-2 py-1" style="font-size: 0.65rem;">Sat 7:30 PM</span>
-                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️0% 🌡️--° 💨0mph 💧--</div>
+                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️9% 🌡️77° 💨10mph 💧57%</div>
                 </div>
                 <div class="d-flex align-items-center mt-1" style="gap: 4px;">
                     <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2711.png" style="width: 16px; height: 16px; object-fit: contain;">
@@ -5621,12 +5681,42 @@
                     </div>
                     
         <div class="weather-row row text-center align-items-center mt-2 mx-0">
-            <div class="col-3 border-end px-1"><div class="fw-bold">--°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">0%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-info">--</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
-            <div class="col-3 px-1"><div class="fw-bold">0 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold">77°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">9%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-info">57%</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
+            <div class="col-3 px-1"><div class="fw-bold">10 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
         </div>
-        
+        <div class="d-flex justify-content-between w-100 py-2 mt-2 border-top" style="scrollbar-width: none;">
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">6PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">82°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">7PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">77°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">8PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">69°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">9PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">66°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">10PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">64°</div>
+            </div></div>
         <div class="mt-2 mb-2">
             <button class="btn btn-sm btn-outline-primary w-100 py-1 fw-bold" onclick="showRadar('https://embed.windy.com/embed2.html?lat=42.27756&lon=-83.74088&zoom=11&level=surface&overlay=rain&product=ecmwf', 'Michigan Stadium')">🗺️ View Live Radar Map</button>
         </div>
@@ -6130,12 +6220,12 @@
     </div>
     
     <div class="col-md-6 col-lg-4 col-xl-3 mb-3 px-1" id="game-401858431">
-        <div class="card game-card shadow-sm border-warning border-3 bg-weather-rain" style="overflow: hidden;">
+        <div class="card game-card shadow-sm  bg-light" style="overflow: hidden;">
             
             <div class="ribbon-view p-2 position-relative" onclick="toggleSingleCard(event, '401858431')" style="cursor: pointer; display: block;">
                 <div class="d-flex align-items-center mb-1">
                     <span class="badge bg-light text-dark border flex-shrink-0 px-2 py-1" style="font-size: 0.65rem;">Sat 8:00 PM</span>
-                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️2% 🌡️77° 💨15mph 💧16%</div>
+                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️0% 🌡️--° 💨0mph 💧--</div>
                 </div>
                 <div class="d-flex align-items-center mt-1" style="gap: 4px;">
                     <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2571.png" style="width: 16px; height: 16px; object-fit: contain;">
@@ -6165,42 +6255,12 @@
                     </div>
                     
         <div class="weather-row row text-center align-items-center mt-2 mx-0">
-            <div class="col-3 border-end px-1"><div class="fw-bold">77°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">2%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-info">16%</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
-            <div class="col-3 px-1"><div class="fw-bold">15 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold">--°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">0%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-info">--</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
+            <div class="col-3 px-1"><div class="fw-bold">0 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
         </div>
-        <div class="d-flex justify-content-between w-100 py-2 mt-2 border-top" style="scrollbar-width: none;">
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">7PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">☀️</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">78°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">8PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">☀️</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">77°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">9PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">73°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">10PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">63°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">11PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">60°</div>
-            </div></div>
+        
         <div class="mt-2 mb-2">
             <button class="btn btn-sm btn-outline-primary w-100 py-1 fw-bold" onclick="showRadar('https://embed.windy.com/embed2.html?lat=41.26828&lon=-110.96324&zoom=11&level=surface&overlay=rain&product=ecmwf', 'Northwestern Medicine Field at Martin Stadium')">🗺️ View Live Radar Map</button>
         </div>
@@ -6212,12 +6272,12 @@
     </div>
     
     <div class="col-md-6 col-lg-4 col-xl-3 mb-3 px-1" id="game-401869142">
-        <div class="card game-card shadow-sm border-danger border-3 bg-weather-storm" style="overflow: hidden;">
+        <div class="card game-card shadow-sm  bg-light" style="overflow: hidden;">
             
             <div class="ribbon-view p-2 position-relative" onclick="toggleSingleCard(event, '401869142')" style="cursor: pointer; display: block;">
                 <div class="d-flex align-items-center mb-1">
                     <span class="badge bg-light text-dark border flex-shrink-0 px-2 py-1" style="font-size: 0.65rem;">Sat 8:00 PM</span>
-                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️76% 🌡️81° 💨9mph 💧83%</div>
+                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️0% 🌡️--° 💨0mph 💧--</div>
                 </div>
                 <div class="d-flex align-items-center mt-1" style="gap: 4px;">
                     <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2320.png" style="width: 16px; height: 16px; object-fit: contain;">
@@ -6247,42 +6307,12 @@
                     </div>
                     
         <div class="weather-row row text-center align-items-center mt-2 mx-0">
-            <div class="col-3 border-end px-1"><div class="fw-bold">81°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">76%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-info">83%</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
-            <div class="col-3 px-1"><div class="fw-bold">9 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold">--°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">0%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-info">--</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
+            <div class="col-3 px-1"><div class="fw-bold">0 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
         </div>
-        <div class="d-flex justify-content-between w-100 py-2 mt-2 border-top" style="scrollbar-width: none;">
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">7PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛈️</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">76%</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">86°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">8PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">🌧️</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">76%</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">81°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">9PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">80°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">10PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">80°</div>
-            </div>
-            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
-                <div class="text-muted fw-bold" style="font-size: 0.6rem;">11PM</div>
-                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
-                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">&nbsp;</div>
-                <div class="fw-bold" style="font-size: 0.75rem;">79°</div>
-            </div></div>
+        
         <div class="mt-2 mb-2">
             <button class="btn btn-sm btn-outline-primary w-100 py-1 fw-bold" onclick="showRadar('https://embed.windy.com/embed2.html?lat=30.22409&lon=-92.01984&zoom=11&level=surface&overlay=rain&product=ecmwf', 'Our Lady of Lourdes Stadium')">🗺️ View Live Radar Map</button>
         </div>
@@ -7114,12 +7144,12 @@
     </div>
     
     <div class="col-md-6 col-lg-4 col-xl-3 mb-3 px-1" id="game-401858438">
-        <div class="card game-card shadow-sm  bg-light" style="overflow: hidden;">
+        <div class="card game-card shadow-sm  bg-weather-cloudy" style="overflow: hidden;">
             
             <div class="ribbon-view p-2 position-relative" onclick="toggleSingleCard(event, '401858438')" style="cursor: pointer; display: block;">
                 <div class="d-flex align-items-center mb-1">
                     <span class="badge bg-light text-dark border flex-shrink-0 px-2 py-1" style="font-size: 0.65rem;">Sun 7:30 PM</span>
-                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️0% 🌡️--° 💨0mph 💧--</div>
+                    <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️27% 🌡️71° 💨7mph 💧93%</div>
                 </div>
                 <div class="d-flex align-items-center mt-1" style="gap: 4px;">
                     <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/275.png" style="width: 16px; height: 16px; object-fit: contain;">
@@ -7149,12 +7179,42 @@
                     </div>
                     
         <div class="weather-row row text-center align-items-center mt-2 mx-0">
-            <div class="col-3 border-end px-1"><div class="fw-bold">--°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">0%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
-            <div class="col-3 border-end px-1"><div class="fw-bold text-info">--</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
-            <div class="col-3 px-1"><div class="fw-bold">0 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold">71°F</div><div class="small text-muted" style="font-size: 0.7rem;">Temp</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-primary">27%</div><div class="small text-muted" style="font-size: 0.7rem;">Rain</div></div>
+            <div class="col-3 border-end px-1"><div class="fw-bold text-info">93%</div><div class="small text-muted" style="font-size: 0.7rem;">Humid</div></div>
+            <div class="col-3 px-1"><div class="fw-bold">7 <span style="font-size:0.7em">mph</span></div><div class="small text-muted" style="font-size: 0.7rem;">Wind</div></div>
         </div>
-        
+        <div class="d-flex justify-content-between w-100 py-2 mt-2 border-top" style="scrollbar-width: none;">
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">6PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">23%</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">72°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">7PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">23%</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">71°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">8PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">23%</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">69°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">9PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">27%</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">68°</div>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill px-1" style="text-align: center;">
+                <div class="text-muted fw-bold" style="font-size: 0.6rem;">10PM</div>
+                <div style="font-size: 1rem; line-height: 1.1; margin: 2px 0;">⛅</div>
+                <div class="text-primary fw-bold" style="font-size: 0.6rem; height: 12px;">27%</div>
+                <div class="fw-bold" style="font-size: 0.75rem;">68°</div>
+            </div></div>
         <div class="mt-2 mb-2">
             <button class="btn btn-sm btn-outline-primary w-100 py-1 fw-bold" onclick="showRadar('https://embed.windy.com/embed2.html?lat=44.51916&lon=-88.01983&zoom=11&level=surface&overlay=rain&product=ecmwf', 'Lambeau Field')">🗺️ View Live Radar Map</button>
         </div>
