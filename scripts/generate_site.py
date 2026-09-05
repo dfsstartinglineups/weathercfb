@@ -649,9 +649,22 @@ MAIN_SITE_TEMPLATE = """<!DOCTYPE html>
 <body>
     <nav class="navbar shadow-sm py-2 mb-0 sticky-top" style="background-color: #0f172a;">
         <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
-            <a href="/" class="navbar-brand text-white fw-bold m-0" style="font-style: italic; font-size: 1.6rem;">
-                Weather <span style="color: #5ac8fa;">CFB</span>
-            </a>
+            <div class="d-flex align-items-center gap-2">
+                <a href="/" class="navbar-brand text-white fw-bold m-0" style="font-style: italic; font-size: 1.6rem;">
+                    Weather <span style="color: #5ac8fa;">CFB</span>
+                </a>
+                <div class="d-flex align-items-center gap-1 ms-1 ps-2" style="border-left: 1px solid rgba(255, 255, 255, 0.2);">
+                    <a href="https://weathernfl.com" class="p-1 text-decoration-none" title="Weather NFL" aria-label="Weather NFL">
+                        <img src="https://weathernfl.com/apple-touch-icon.png" alt="Weather NFL" style="width: 26px; height: 26px; border-radius: 6px; display: block;">
+                    </a>
+                    <a href="https://weathermlb.com" class="p-1 text-decoration-none" title="Weather MLB" aria-label="Weather MLB">
+                        <img src="https://weathermlb.com/apple-touch-icon.png" alt="Weather MLB" style="width: 26px; height: 26px; border-radius: 6px; display: block;">
+                    </a>
+                    <a href="https://weatherfootball.com" class="p-1 text-decoration-none" title="Weather Football" aria-label="Weather Football">
+                        <img src="https://weatherfootball.com/apple-touch-icon.png" alt="Weather Football" style="width: 26px; height: 26px; border-radius: 6px; display: block;">
+                    </a>
+                </div>
+            </div>
             <div class="d-flex align-items-center gap-2" style="min-width: 250px;">
                 <select id="team-nav-select" class="form-select form-select-sm fw-bold shadow-sm">
                     <option></option>
@@ -815,9 +828,22 @@ TEAM_PAGE_TEMPLATE = """<!DOCTYPE html>
 <body>
     <nav class="navbar shadow-sm py-2 mb-0 sticky-top" style="background-color: #0f172a;">
         <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
-            <a href="/" class="navbar-brand text-white fw-bold m-0" style="font-style: italic; font-size: 1.6rem;">
-                Weather <span style="color: #5ac8fa;">CFB</span>
-            </a>
+            <div class="d-flex align-items-center gap-2">
+                <a href="/" class="navbar-brand text-white fw-bold m-0" style="font-style: italic; font-size: 1.6rem;">
+                    Weather <span style="color: #5ac8fa;">CFB</span>
+                </a>
+                <div class="d-flex align-items-center gap-1 ms-1 ps-2" style="border-left: 1px solid rgba(255, 255, 255, 0.2);">
+                    <a href="https://weathernfl.com" class="p-1 text-decoration-none" title="Weather NFL" aria-label="Weather NFL">
+                        <img src="https://weathernfl.com/apple-touch-icon.png" alt="Weather NFL" style="width: 26px; height: 26px; border-radius: 6px; display: block;">
+                    </a>
+                    <a href="https://weathermlb.com" class="p-1 text-decoration-none" title="Weather MLB" aria-label="Weather MLB">
+                        <img src="https://weathermlb.com/apple-touch-icon.png" alt="Weather MLB" style="width: 26px; height: 26px; border-radius: 6px; display: block;">
+                    </a>
+                    <a href="https://weatherfootball.com" class="p-1 text-decoration-none" title="Weather Football" aria-label="Weather Football">
+                        <img src="https://weatherfootball.com/apple-touch-icon.png" alt="Weather Football" style="width: 26px; height: 26px; border-radius: 6px; display: block;">
+                    </a>
+                </div>
+            </div>
             <div class="d-flex align-items-center gap-2" style="min-width: 250px;">
                 <select id="team-nav-select" class="form-select form-select-sm fw-bold">
                     <option></option>
