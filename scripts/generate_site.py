@@ -449,7 +449,7 @@ def render_game_card(game, is_single_team=False):
         badge_text = dt.strftime("%a %I:%M %p").replace(" 0", " ")
     elif status_state == 'in':
         badge_text = game.get('clock', 'LIVE')
-        badge_style = "bg-danger text-white border-danger"
+        badge_style = "bg-success text-white border-success"
     elif status_state == 'post':
         badge_text = "FINAL"
         badge_style = "bg-secondary text-white border-secondary"
