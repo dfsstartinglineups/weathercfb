@@ -616,13 +616,7 @@ MAIN_SITE_TEMPLATE = """<!DOCTYPE html>
     <meta name="twitter:image" content="https://weathercfb.com/social-share.png">
     
     <script type="application/ld+json">
-    {{
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Weather CFB",
-      "url": "https://weathercfb.com/",
-      "description": "Live College Football weather, wind, and stadium conditions for game predictions and fantasy players."
-    }}
+{main_schema_json}
     </script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -1005,7 +999,48 @@ def main():
     else:
         cards_content = f'<div class="col-12 text-center py-5"><div class="alert alert-light border shadow-sm"><h5>No Games Scheduled for {week_label}</h5></div></div>'
 
-    main_html = MAIN_SITE_TEMPLATE.format(week_label=week_label, select_options=select_options, cards_content=cards_content)
+    # Generate Dynamic Schema for the Main Page
+    schema_list = []
+    for g in games:
+        stadium = g.get('stadium') or {}
+        stadium_name = stadium.get('name', 'Unknown')
+        stadium_city = stadium.get('city', '')
+        stadium_state = stadium.get('state', '')
+        schema_address = f"{stadium_city}, {stadium_state}".strip(', ')
+        
+        event_schema = {
+            "@context": "https://schema.org",
+            "@type": "SportsEvent",
+            "name": f"{g.get('away_team', 'TBD')} at {g.get('home_team', 'TBD')}",
+            "description": get_weather_blurb(g),
+            "startDate": g.get('game_time', ''),
+            "location": {
+                "@type": "Place",
+                "name": stadium_name,
+                "address": schema_address
+            },
+            "homeTeam": {"@type": "SportsTeam", "name": g.get('home_team', 'TBD')},
+            "awayTeam": {"@type": "SportsTeam", "name": g.get('away_team', 'TBD')}
+        }
+        schema_list.append(event_schema)
+        
+    if not schema_list:
+        schema_list = {
+            "@context": "https://schema.org", 
+            "@type": "WebSite", 
+            "name": "Weather CFB", 
+            "url": "https://weathercfb.com/",
+            "description": "Live College Football weather, wind, and stadium conditions for game predictions and fantasy players."
+        }
+        
+    main_schema_json = json.dumps(schema_list, indent=2)
+
+    main_html = MAIN_SITE_TEMPLATE.format(
+        week_label=week_label, 
+        select_options=select_options, 
+        cards_content=cards_content,
+        main_schema_json=main_schema_json
+    )
     if write_if_changed(MAIN_INDEX_FILE, main_html):
         changed_urls.append("https://weathercfb.com/")
 
