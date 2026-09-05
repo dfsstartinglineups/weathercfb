@@ -74,9 +74,22 @@
 <body>
     <nav class="navbar shadow-sm py-2 mb-0 sticky-top" style="background-color: #0f172a;">
         <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
-            <a href="/" class="navbar-brand text-white fw-bold m-0" style="font-style: italic; font-size: 1.6rem;">
-                Weather <span style="color: #5ac8fa;">CFB</span>
-            </a>
+            <div class="d-flex align-items-center gap-2">
+                <a href="/" class="navbar-brand text-white fw-bold m-0" style="font-style: italic; font-size: 1.6rem;">
+                    Weather <span style="color: #5ac8fa;">CFB</span>
+                </a>
+                <div class="d-flex align-items-center gap-1 ms-1 ps-2" style="border-left: 1px solid rgba(255, 255, 255, 0.2);">
+                    <a href="https://weathernfl.com" class="p-1 text-decoration-none" title="Weather NFL" aria-label="Weather NFL">
+                        <img src="https://weathernfl.com/apple-touch-icon.png" alt="Weather NFL" style="width: 26px; height: 26px; border-radius: 6px; display: block;">
+                    </a>
+                    <a href="https://weathermlb.com" class="p-1 text-decoration-none" title="Weather MLB" aria-label="Weather MLB">
+                        <img src="https://weathermlb.com/apple-touch-icon.png" alt="Weather MLB" style="width: 26px; height: 26px; border-radius: 6px; display: block;">
+                    </a>
+                    <a href="https://weatherfootball.com" class="p-1 text-decoration-none" title="Weather Football" aria-label="Weather Football">
+                        <img src="https://weatherfootball.com/apple-touch-icon.png" alt="Weather Football" style="width: 26px; height: 26px; border-radius: 6px; display: block;">
+                    </a>
+                </div>
+            </div>
             <div class="d-flex align-items-center gap-2" style="min-width: 250px;">
                 <select id="team-nav-select" class="form-select form-select-sm fw-bold">
                     <option></option>
@@ -282,7 +295,7 @@
             
             <div class="ribbon-view p-2 position-relative" onclick="toggleSingleCard(event, '401858430')" style="cursor: pointer; display: none;">
                 <div class="d-flex align-items-center mb-1">
-                    <span class="badge bg-success text-white border-success flex-shrink-0 px-2 py-1" style="font-size: 0.65rem;">End of 1st</span>
+                    <span class="badge bg-success text-white border-success flex-shrink-0 px-2 py-1" style="font-size: 0.65rem;">14:08 - 2nd</span>
                     <div class="fw-bold text-dark text-center flex-grow-1 ms-2" style="font-size: 0.75rem;">🌧️11% 🌡️98° 💨9mph 💧45%</div>
                 </div>
                 <div class="d-flex align-items-center mt-1" style="gap: 4px;">
@@ -297,7 +310,7 @@
             <div class="full-card-view" onclick="toggleSingleCard(event, '401858430')" style="cursor: pointer; display: block;">
                 <div class="card-body px-2 pt-2 pb-2"> 
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="badge bg-success text-white border-success">End of 1st</span>
+                        <span class="badge bg-success text-white border-success">14:08 - 2nd</span>
                         <span class="stadium-name text-truncate text-end flex-grow-1 ms-2">Memorial Stadium (Lincoln, NE)</span>
                     </div>
                     <div class="d-flex justify-content-between align-items-center px-1 mb-1">
